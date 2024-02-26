@@ -7,15 +7,13 @@
     <style>
         body {
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #fffdba;
+            overflow: hidden;
         }
-        #pongCanvas {
-            border: 12px solid #ffffff;
-            background-color: #000000;
+        canvas {
+            display: block;
+            margin: 0 auto;
+            border: 2px solid #e88aff;
+            background-color: #222;
         }
         .score {
             position: absolute;
@@ -35,13 +33,22 @@
     </style>
 </head>
 <body>
-    <canvas id="pongCanvas" width="800" height="400"></canvas>
+    <canvas id="pongCanvas"></canvas>
     <div class="score player1-score">Player 1: <span id="player1Score">0</span></div>
     <div class="score player2-score">Player 2: <span id="player2Score">0</span></div>
 
     <script>
         const canvas = document.getElementById('pongCanvas');
         const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+
+        resizeCanvas();
 
         const ball = {
             x: canvas.width / 2,
