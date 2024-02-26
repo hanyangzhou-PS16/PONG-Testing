@@ -11,17 +11,33 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #111;
-            color: white;
-            font-family: Arial, sans-serif;
+            background-color: #222;
         }
-        canvas {
+        #pongCanvas {
             border: 2px solid white;
+            background-color: #222;
+        }
+        .score {
+            position: absolute;
+            top: 20px;
+            left: calc(50% - 50px);
+            color: white;
+            font-size: 24px;
+        }
+        .player1-score {
+            left: calc(50% - 100px);
+            color: blue;
+        }
+        .player2-score {
+            left: calc(50% + 50px);
+            color: red;
         }
     </style>
 </head>
 <body>
     <canvas id="pongCanvas" width="800" height="400"></canvas>
+    <div class="score player1-score">Player 1: <span id="player1Score">0</span></div>
+    <div class="score player2-score">Player 2: <span id="player2Score">0</span></div>
 
     <script>
         const canvas = document.getElementById('pongCanvas');
@@ -44,7 +60,8 @@
             y: canvas.height / 2 - paddleHeight / 2,
             dy: 0,
             speed: 8,
-            color: 'white'
+            color: 'blue',
+            score: 0
         };
 
         const player2 = {
@@ -52,8 +69,11 @@
             y: canvas.height / 2 - paddleHeight / 2,
             dy: 0,
             speed: 8,
-            color: 'white'
+            color: 'red',
+            score: 0
         };
+
+        const keysPressed = {};
 
         function drawBall() {
             ctx.beginPath();
@@ -63,8 +83,8 @@
             ctx.closePath();
         }
 
-        function drawPaddle(x, y) {
-            ctx.fillStyle = 'white';
+        function drawPaddle(x, y, color) {
+            ctx.fillStyle = color;
             ctx.fillRect(x, y, paddleWidth, paddleHeight);
         }
 
@@ -73,8 +93,8 @@
 
             drawBall();
 
-            drawPaddle(player1.x, player1.y);
-            drawPaddle(player2.x, player2.y);
+            drawPaddle(player1.x, player1.y, player1.color);
+            drawPaddle(player2.x, player2.y, player2.color);
 
             ball.x += ball.speedX;
             ball.y += ball.speedY;
@@ -99,24 +119,31 @@
                 ball.speedX = -ball.speedX;
             }
 
-            if (ball.x - ball.radius < 0 || ball.x + ball.radius > canvas.width) {
+            if (ball.x - ball.radius < 0) {
+                player2.score++;
+                document.getElementById('player2Score').textContent = player2.score;
+                resetBall();
+            } else if (ball.x + ball.radius > canvas.width) {
+                player1.score++;
+                document.getElementById('player1Score').textContent = player1.score;
                 resetBall();
             }
 
-            player1.y += player1.dy;
-            player2.y += player2.dy;
-
-            if (player1.y < 0) {
-                player1.y = 0;
-            } else if (player1.y + paddleHeight > canvas.height) {
-                player1.y = canvas.height - paddleHeight;
+            if (keysPressed['w']) {
+                player1.y -= player1.speed;
+            }
+            if (keysPressed['s']) {
+                player1.y += player1.speed;
+            }
+            if (keysPressed['ArrowUp']) {
+                player2.y -= player2.speed;
+            }
+            if (keysPressed['ArrowDown']) {
+                player2.y += player2.speed;
             }
 
-            if (player2.y < 0) {
-                player2.y = 0;
-            } else if (player2.y + paddleHeight > canvas.height) {
-                player2.y = canvas.height - paddleHeight;
-            }
+            player1.y = Math.max(0, Math.min(player1.y, canvas.height - paddleHeight));
+            player2.y = Math.max(0, Math.min(player2.y, canvas.height - paddleHeight));
 
             requestAnimationFrame(draw);
         }
@@ -129,23 +156,11 @@
         }
 
         function keyDownHandler(e) {
-            if (e.key === 'w') {
-                player1.dy = -player1.speed;
-            } else if (e.key === 's') {
-                player1.dy = player1.speed;
-            } else if (e.key === 'ArrowUp') {
-                player2.dy = -player2.speed;
-            } else if (e.key === 'ArrowDown') {
-                player2.dy = player2.speed;
-            }
+            keysPressed[e.key] = true;
         }
 
         function keyUpHandler(e) {
-            if (e.key === 'w' || e.key === 's') {
-                player1.dy = 0;
-            } else if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-                player2.dy = 0;
-            }
+            keysPressed[e.key] = false;
         }
 
         document.addEventListener('keydown', keyDownHandler, false);
