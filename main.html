@@ -1,33 +1,157 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Science Wonders</title>
+    <title>Pong Game</title>
     <style>
-      body {
-        font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f8f9fa;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 35vh;
-      }
-      h1 {
-        font-size: 48px;
-      }
-      iframe {
-        height: 450px;
-        width: 80%;
-        padding: 20px 20px 50px 20px;
-      }
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            border: 2px solid white;
+        }
     </style>
-    <body>
-      <h1>Sandstrike!</h1>
-      <iframe src="https://sandstrike.io/"></iframe>
-    </body>
-  </head>
+</head>
+<body>
+    <canvas id="pongCanvas" width="800" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('pongCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const ball = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            radius: 10,
+            speedX: 5,
+            speedY: 5,
+            color: 'white'
+        };
+
+        const paddleWidth = 10;
+        const paddleHeight = 80;
+
+        const player1 = {
+            x: 20,
+            y: canvas.height / 2 - paddleHeight / 2,
+            dy: 0,
+            speed: 8,
+            color: 'white'
+        };
+
+        const player2 = {
+            x: canvas.width - 30,
+            y: canvas.height / 2 - paddleHeight / 2,
+            dy: 0,
+            speed: 8,
+            color: 'white'
+        };
+
+        function drawBall() {
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+            ctx.fillStyle = ball.color;
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function drawPaddle(x, y) {
+            ctx.fillStyle = 'white';
+            ctx.fillRect(x, y, paddleWidth, paddleHeight);
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            drawBall();
+
+            drawPaddle(player1.x, player1.y);
+            drawPaddle(player2.x, player2.y);
+
+            ball.x += ball.speedX;
+            ball.y += ball.speedY;
+
+            if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+                ball.speedY = -ball.speedY;
+            }
+
+            if (
+                ball.x - ball.radius < player1.x + paddleWidth &&
+                ball.y > player1.y &&
+                ball.y < player1.y + paddleHeight
+            ) {
+                ball.speedX = -ball.speedX;
+            }
+
+            if (
+                ball.x + ball.radius > player2.x &&
+                ball.y > player2.y &&
+                ball.y < player2.y + paddleHeight
+            ) {
+                ball.speedX = -ball.speedX;
+            }
+
+            if (ball.x - ball.radius < 0 || ball.x + ball.radius > canvas.width) {
+                resetBall();
+            }
+
+            player1.y += player1.dy;
+            player2.y += player2.dy;
+
+            if (player1.y < 0) {
+                player1.y = 0;
+            } else if (player1.y + paddleHeight > canvas.height) {
+                player1.y = canvas.height - paddleHeight;
+            }
+
+            if (player2.y < 0) {
+                player2.y = 0;
+            } else if (player2.y + paddleHeight > canvas.height) {
+                player2.y = canvas.height - paddleHeight;
+            }
+
+            requestAnimationFrame(draw);
+        }
+
+        function resetBall() {
+            ball.x = canvas.width / 2;
+            ball.y = canvas.height / 2;
+            ball.speedX = -ball.speedX;
+            ball.speedY = Math.random() > 0.5 ? 5 : -5;
+        }
+
+        function keyDownHandler(e) {
+            if (e.key === 'w') {
+                player1.dy = -player1.speed;
+            } else if (e.key === 's') {
+                player1.dy = player1.speed;
+            } else if (e.key === 'ArrowUp') {
+                player2.dy = -player2.speed;
+            } else if (e.key === 'ArrowDown') {
+                player2.dy = player2.speed;
+            }
+        }
+
+        function keyUpHandler(e) {
+            if (e.key === 'w' || e.key === 's') {
+                player1.dy = 0;
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+                player2.dy = 0;
+            }
+        }
+
+        document.addEventListener('keydown', keyDownHandler, false);
+        document.addEventListener('keyup', keyUpHandler, false);
+
+        draw();
+    </script>
+</body>
 </html>
