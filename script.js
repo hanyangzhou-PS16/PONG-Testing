@@ -24,11 +24,11 @@ const ball = {
     color: 'white'
 };
 
-const paddleWidth = 20;
-const paddleHeight = 130;
+const paddleWidth = 40;
+const paddleHeight = 185;
 
 const player1 = {
-    x: 80,
+    x: 120,
     y: canvas.height / 2 - paddleHeight / 2,
     dy: 0,
     speed: 8,
@@ -37,7 +37,7 @@ const player1 = {
 };
 
 const player2 = {
-    x: canvas.width - 80,
+    x: canvas.width - 120,
     y: canvas.height / 2 - paddleHeight / 2,
     dy: 0,
     speed: 8,
