@@ -19,6 +19,8 @@ const ball = {
     radius: 15,
     speedX: 5,
     speedY: 5,
+    maxSpeed: 20,
+    speedIncrement: 1,
     color: 'white'
 };
 
@@ -79,6 +81,7 @@ function draw() {
         ball.y < player1.y + paddleHeight
     ) {
         ball.speedX = -ball.speedX;
+        increaseBallSpeed();
     }
 
     if (
@@ -87,6 +90,7 @@ function draw() {
         ball.y < player2.y + paddleHeight
     ) {
         ball.speedX = -ball.speedX;
+        increaseBallSpeed();
     }
 
     if (ball.x - ball.radius < 0) {
@@ -116,11 +120,20 @@ function draw() {
     player2.y = Math.max(0, Math.min(player2.y, canvas.height - paddleHeight));
 }
 
+function increaseBallSpeed() {
+    if (Math.abs(ball.speedX) < ball.maxSpeed) {
+        ball.speedX += ball.speedIncrement * Math.sign(ball.speedX);
+    }
+    if (Math.abs(ball.speedY) < ball.maxSpeed) {
+        ball.speedY += ball.speedIncrement * Math.sign(ball.speedY);
+    }
+}
+
 function resetBall() {
     ball.x = canvas.width / 2;
     ball.y = canvas.height / 2;
-    ball.speedX = -ball.speedX;
-    ball.speedY = Math.random() > 0.5 ? 5 : -5;
+    ball.speedX = 5; // Reset ball speed
+    ball.speedY = 5; // Reset ball speed
 }
 
 function keyDownHandler(e) {
