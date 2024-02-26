@@ -12,8 +12,8 @@
         canvas {
             display: block;
             margin: 0 auto;
-            border: 2px solid #e88aff;
-            background-color: #222;
+            border: 14px solid #e88aff;
+            background-color: #000000;
         }
         .score {
             position: absolute;
@@ -53,17 +53,17 @@
         const ball = {
             x: canvas.width / 2,
             y: canvas.height / 2,
-            radius: 10,
+            radius: 30,
             speedX: 5,
             speedY: 5,
             color: 'white'
         };
 
-        const paddleWidth = 10;
-        const paddleHeight = 80;
+        const paddleWidth = 20;
+        const paddleHeight = 130;
 
         const player1 = {
-            x: 20,
+            x: 50,
             y: canvas.height / 2 - paddleHeight / 2,
             dy: 0,
             speed: 8,
@@ -72,7 +72,7 @@
         };
 
         const player2 = {
-            x: canvas.width - 30,
+            x: canvas.width - 50,
             y: canvas.height / 2 - paddleHeight / 2,
             dy: 0,
             speed: 8,
