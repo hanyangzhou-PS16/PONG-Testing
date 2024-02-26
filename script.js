@@ -19,12 +19,12 @@ const ball = {
     radius: 15,
     speedX: 5,
     speedY: 5,
-    maxSpeed: 20,
-    speedIncrement: 1,
+    maxSpeed: 12,
+    speedIncrement: 0.5,
     color: 'white'
 };
 
-const paddleWidth = 40;
+const paddleWidth = 25;
 const paddleHeight = 185;
 
 const player1 = {
@@ -132,8 +132,8 @@ function increaseBallSpeed() {
 function resetBall() {
     ball.x = canvas.width / 2;
     ball.y = canvas.height / 2;
-    ball.speedX = 5; // Reset ball speed
-    ball.speedY = 5; // Reset ball speed
+    ball.speedX = 5;
+    ball.speedY = 5;
 }
 
 function keyDownHandler(e) {
