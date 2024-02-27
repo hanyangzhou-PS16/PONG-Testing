@@ -39,16 +39,16 @@ function resizeCanvas() {
     canvas.height = window.innerHeight - 28;
 }
 
-function increaseBallSpeed() {
-        if (Math.abs(ball.speedX) < ball.maxSpeed) {
-            ball.speedX += ball.speedIncrement * Math.sign(ball.speedX);
-        }
-        if (Math.abs(ball.speedY) < ball.maxSpeed) {
-            ball.speedY += ball.speedIncrement * Math.sign(ball.speedY);
-        }
+function increaseBallSpeed(ball) {
+    if (Math.abs(ball.speedX) < ball.maxSpeed) {
+        ball.speedX += ball.speedIncrement * Math.sign(ball.speedX);
     }
+    if (Math.abs(ball.speedY) < ball.maxSpeed) {
+        ball.speedY += ball.speedIncrement * Math.sign(ball.speedY);
+    }
+}
 
-function resetBall() {
+function resetBall(ball) {
     ball.x = canvas.width / 2;
     ball.y = canvas.height / 2;
     ball.speedX = 5;
@@ -68,37 +68,8 @@ function drawPaddle(x, y, color) {
     ctx.fillRect(x, y, paddleWidth, paddleHeight);
 }
 
-const player1 = {
-    x: 120,
-    y: canvas.height / 2 - paddleHeight / 2,
-    dy: 0,
-    speed: 8,
-    color: '#45aee6',
-    score: 0
-};
-
-const player2 = {
-    x: canvas.width - 120,
-    y: canvas.height / 2 - paddleHeight / 2,
-    dy: 0,
-    speed: 8,
-    color: '#e65045',
-    score: 0
-};
-
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    const ball = {
-        x: canvas.width / 2,
-        y: canvas.height / 2,
-        radius: 15,
-        speedX: 5,
-        speedY: 5,
-        maxSpeed: 12,
-        speedIncrement: 0.5,
-        color: 'black'
-    };
 
     drawPaddle(player1.x, player1.y, player1.color);
     drawPaddle(player2.x, player2.y, player2.color);
@@ -116,7 +87,7 @@ function draw() {
         ball.y < player1.y + paddleHeight
     ) {
         ball.speedX = -ball.speedX;
-        increaseBallSpeed();
+        increaseBallSpeed(ball);
     }
 
     if (
@@ -125,17 +96,17 @@ function draw() {
         ball.y < player2.y + paddleHeight
     ) {
         ball.speedX = -ball.speedX;
-        increaseBallSpeed();
+        increaseBallSpeed(ball);
     }
 
     if (ball.x - ball.radius < 0) {
         player2.score++;
         document.getElementById('player2Score').textContent = player2.score;
-        resetBall();
+        resetBall(ball);
     } else if (ball.x + ball.radius > canvas.width) {
         player1.score++;
         document.getElementById('player1Score').textContent = player1.score;
-        resetBall();
+        resetBall(ball);
     }
 
     if (keysPressed['w']) {
@@ -170,6 +141,34 @@ function startGame() {
     const paddleHeight = 185;
 
     const keysPressed = {};
+    const ball = {
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        radius: 15,
+        speedX: 5,
+        speedY: 5,
+        maxSpeed: 12,
+        speedIncrement: 0.5,
+        color: 'black'
+    };
+
+    const player1 = {
+        x: 120,
+        y: canvas.height / 2 - paddleHeight / 2,
+        dy: 0,
+        speed: 8,
+        color: '#45aee6',
+        score: 0
+    };
+
+    const player2 = {
+        x: canvas.width - 120,
+        y: canvas.height / 2 - paddleHeight / 2,
+        dy: 0,
+        speed: 8,
+        color: '#e65045',
+        score: 0
+    };
 
     draw();
 
