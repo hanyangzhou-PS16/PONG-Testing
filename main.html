@@ -29,21 +29,19 @@
             letter-spacing: 2px;
             text-transform: uppercase;
         }
-        .player1-score {
-            left: calc(50% - 100px);
+        .score span {
             color: blue;
         }
-        .player2-score {
-            left: calc(50% + 100px);
+        .score span:nth-child(2) {
             color: red;
         }
     </style>
 </head>
 <body>
     <canvas id="pongCanvas"></canvas>
-    <div class="score player1-score">Player 1: <span id="player1Score">0</span></div>
-    <div class="score player2-score">Player 2: <span id="player2Score">0</span></div>
-
+    <div class="score">
+        <span id="player1Score">0</span> - <span id="player2Score">0</span>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
