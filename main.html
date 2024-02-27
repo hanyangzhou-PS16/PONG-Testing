@@ -4,44 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pong Game</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            font-family: 'Roboto', sans-serif;
-            background-color: #ffcbc7;
-        }
-        canvas {
-            display: block;
-            margin: 0 auto;
-            border: 14px solid #e88aff;
-            background-color: #ffcbc7;
-            box-sizing: border-box;
-        }
-        .score {
-            position: absolute;
-            top: 20px;
-            left: calc(50% - 50px);
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        .score span {
-            color: blue;
-        }
-        .score span:nth-child(2) {
-            color: red;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <canvas id="pongCanvas"></canvas>
-    <div class="score">
-        <span id="player1Score">0</span> - <span id="player2Score">0</span>
+    <div id="startMenu">
+        <h1 class="title">PONG</h1>
+        <div class="button-container">
+            <button id="startButton">Start</button>
+            <button id="controlsButton">Controls</button>
+        </div>
     </div>
+    <canvas id="pongCanvas" style="display: none;"></canvas>
+
     <script src="script.js"></script>
 </body>
 </html>
