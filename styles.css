@@ -47,3 +47,18 @@ canvas {
     background-color: #000000;
     box-sizing: border-box;
 }
+
+#scoreboard {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+}
+
+#player1Score,
+#player2Score {
+    font-size: 24px;
+    margin: 0 10px;
+}
