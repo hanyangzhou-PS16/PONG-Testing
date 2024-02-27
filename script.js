@@ -3,7 +3,7 @@ const controlsPage = document.getElementById('controlsPage');
 const canvas = document.getElementById('pongCanvas');
 const ctx = canvas.getContext('2d');
 const keysPressed = {};
-var player1, player2;
+var player1, player2, ball;
 
 showStartMenu();
 
@@ -41,7 +41,7 @@ function resizeCanvas() {
     canvas.height = window.innerHeight - 28;
 }
 
-function increaseBallSpeed(ball) {
+function increaseBallSpeed() {
     if (Math.abs(ball.speedX) < ball.maxSpeed) {
         ball.speedX += ball.speedIncrement * Math.sign(ball.speedX);
     }
@@ -50,7 +50,7 @@ function increaseBallSpeed(ball) {
     }
 }
 
-function resetBall(ball) {
+function resetBall() {
     ball.x = canvas.width / 2;
     ball.y = canvas.height / 2;
     ball.speedX = 5;
@@ -91,7 +91,7 @@ function draw() {
         ball.y < player1.y + 185
     ) {
         ball.speedX = -ball.speedX;
-        increaseBallSpeed(ball);
+        increaseBallSpeed();
     }
 
     if (
@@ -100,17 +100,17 @@ function draw() {
         ball.y < player2.y + 185
     ) {
         ball.speedX = -ball.speedX;
-        increaseBallSpeed(ball);
+        increaseBallSpeed();
     }
 
     if (ball.x - ball.radius < 0) {
         player2.score++;
         document.getElementById('player2Score').textContent = player2.score;
-        resetBall(ball);
+        resetBall();
     } else if (ball.x + ball.radius > canvas.width) {
         player1.score++;
         document.getElementById('player1Score').textContent = player1.score;
-        resetBall(ball);
+        resetBall();
     }
 
     if (keysPressed['w']) {
@@ -159,7 +159,7 @@ function startGame() {
         score: 0
     };
 
-    const ball = {
+    ball = {
         x: canvas.width / 2,
         y: canvas.height / 2,
         radius: 15,
