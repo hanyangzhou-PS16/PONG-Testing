@@ -48,6 +48,11 @@ canvas {
     box-sizing: border-box;
 }
 
+span {
+    font-size: 24px;
+    color: #ffffff;
+}
+
 #scoreboard {
     position: absolute;
     top: 10%;
