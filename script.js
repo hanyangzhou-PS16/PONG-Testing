@@ -39,6 +39,30 @@ function resizeCanvas() {
     canvas.height = window.innerHeight - 28;
 }
 
+function increaseBallSpeed() {
+        if (Math.abs(ball.speedX) < ball.maxSpeed) {
+            ball.speedX += ball.speedIncrement * Math.sign(ball.speedX);
+        }
+        if (Math.abs(ball.speedY) < ball.maxSpeed) {
+            ball.speedY += ball.speedIncrement * Math.sign(ball.speedY);
+        }
+    }
+
+function resetBall() {
+    ball.x = canvas.width / 2;
+    ball.y = canvas.height / 2;
+    ball.speedX = 5;
+    ball.speedY = 5;
+}
+
+function keyDownHandler(e) {
+    keysPressed[e.key] = true;
+}
+
+function keyUpHandler(e) {
+    keysPressed[e.key] = false;
+}
+
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -144,31 +168,7 @@ function startGame() {
 
     const keysPressed = {};
 
-    draw()
-    
-    function increaseBallSpeed() {
-        if (Math.abs(ball.speedX) < ball.maxSpeed) {
-            ball.speedX += ball.speedIncrement * Math.sign(ball.speedX);
-        }
-        if (Math.abs(ball.speedY) < ball.maxSpeed) {
-            ball.speedY += ball.speedIncrement * Math.sign(ball.speedY);
-        }
-    }
-
-    function resetBall() {
-        ball.x = canvas.width / 2;
-        ball.y = canvas.height / 2;
-        ball.speedX = 5;
-        ball.speedY = 5;
-    }
-
-    function keyDownHandler(e) {
-        keysPressed[e.key] = true;
-    }
-
-    function keyUpHandler(e) {
-        keysPressed[e.key] = false;
-    }
+    draw();
 
     document.addEventListener('keydown', keyDownHandler, false);
     document.addEventListener('keyup', keyUpHandler, false);
