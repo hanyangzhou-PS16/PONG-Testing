@@ -115,14 +115,22 @@ function draw() {
         if (player2ScoreElement) {
             player2ScoreElement.textContent = player2.score;
         }
-        resetBall();
+        if (player2.score >= 5) {
+            endGame(2);
+        } else {
+            resetBall();
+        }
     } else if (ball.x + ball.radius > canvas.width) {
         player1.score++;
         const player1ScoreElement = document.getElementById('player1Score');
         if (player1ScoreElement) {
             player1ScoreElement.textContent = player1.score;
         }
-        resetBall();
+        if (player1.score >= 5) {
+            endGame(1);
+        } else {
+            resetBall();
+        }
     }
 
     if (keysPressed['w']) {
@@ -187,4 +195,22 @@ function startGame() {
 
     setInterval(draw, 1000 / 60);
     draw();
+}
+
+function endGame(winner) {
+    const winnerText = document.createElement('p');
+    winnerText.textContent = `Player ${winner} won!`;
+    
+    const playAgainButton = document.createElement('button');
+    playAgainButton.textContent = 'Play Again';
+    playAgainButton.addEventListener('click', () => {
+        location.reload();
+    });
+
+    const gameResultContainer = document.getElementById('gameResult');
+    gameResultContainer.appendChild(winnerText);
+    gameResultContainer.appendChild(playAgainButton);
+    gameResultContainer.style.display = 'block';
+
+    canvas.style.display = 'none';
 }
