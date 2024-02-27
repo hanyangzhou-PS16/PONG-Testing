@@ -2,6 +2,8 @@ const startMenu = document.getElementById('startMenu');
 const controlsPage = document.getElementById('controlsPage');
 const canvas = document.getElementById('pongCanvas');
 const ctx = canvas.getContext('2d');
+const keysPressed = {};
+let player1, player2;
 
 showStartMenu();
 
@@ -64,27 +66,11 @@ function keyUpHandler(e) {
 }
 
 function drawPaddle(x, y, color) {
+    const paddleWidth = 25;
+    const paddleHeight = 185;
     ctx.fillStyle = color;
     ctx.fillRect(x, y, paddleWidth, paddleHeight);
 }
-
-const player1 = {
-    x: 120,
-    y: canvas.height / 2 - paddleHeight / 2,
-    dy: 0,
-    speed: 8,
-    color: '#45aee6',
-    score: 0
-};
-
-const player2 = {
-    x: canvas.width - 120,
-    y: canvas.height / 2 - paddleHeight / 2,
-    dy: 0,
-    speed: 8,
-    color: '#e65045',
-    score: 0
-};
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -155,10 +141,24 @@ function startGame() {
     hideStartMenu();
     showGameCanvas();
 
-    const paddleWidth = 25;
-    const paddleHeight = 185;
+    player1 = {
+        x: 120,
+        y: canvas.height / 2 - paddleHeight / 2,
+        dy: 0,
+        speed: 8,
+        color: '#45aee6',
+        score: 0
+    };
 
-    const keysPressed = {};
+    player2 = {
+        x: canvas.width - 120,
+        y: canvas.height / 2 - paddleHeight / 2,
+        dy: 0,
+        speed: 8,
+        color: '#e65045',
+        score: 0
+    };
+
     const ball = {
         x: canvas.width / 2,
         y: canvas.height / 2,
@@ -169,6 +169,9 @@ function startGame() {
         speedIncrement: 0.5,
         color: 'black'
     };
+
+    const paddleWidth = 25;
+    const paddleHeight = 185;
 
     draw();
 
