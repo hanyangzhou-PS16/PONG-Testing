@@ -21,7 +21,7 @@ const ball = {
     speedY: 5,
     maxSpeed: 12,
     speedIncrement: 0.5,
-    color: 'white'
+    color: 'black'
 };
 
 const paddleWidth = 25;
