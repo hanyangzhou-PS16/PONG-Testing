@@ -3,7 +3,7 @@ const controlsPage = document.getElementById('controlsPage');
 const canvas = document.getElementById('pongCanvas');
 const ctx = canvas.getContext('2d');
 const keysPressed = {};
-var player1, player2, ball;
+var player1, player2, ball, drawInterval;
 
 showStartMenu();
 
@@ -193,11 +193,14 @@ function startGame() {
     document.addEventListener('keydown', keyDownHandler, false);
     document.addEventListener('keyup', keyUpHandler, false);
 
-    setInterval(draw, 1000 / 60);
     draw();
+
+    drawInterval = setInterval(draw, 1000 / 60);
 }
 
 function endGame(winner) {
+    clearInterval(drawInterval);
+
     const winnerText = document.createElement('p');
     winnerText.textContent = `Player ${winner} won!`;
     
