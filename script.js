@@ -3,7 +3,7 @@ const controlsPage = document.getElementById('controlsPage');
 const canvas = document.getElementById('pongCanvas');
 const ctx = canvas.getContext('2d');
 const keysPressed = {};
-let player1, player2, paddleHeight;
+var player1, player2;
 
 showStartMenu();
 
@@ -67,7 +67,7 @@ function keyUpHandler(e) {
 
 function drawPaddle(x, y, color) {
     const paddleWidth = 25;
-    paddleHeight = 185;
+    const paddleHeight = 185;
     ctx.fillStyle = color;
     ctx.fillRect(x, y, paddleWidth, paddleHeight);
 }
@@ -88,7 +88,7 @@ function draw() {
     if (
         ball.x - ball.radius < player1.x + 25 &&
         ball.y > player1.y &&
-        ball.y < player1.y + paddleHeight
+        ball.y < player1.y + 185
     ) {
         ball.speedX = -ball.speedX;
         increaseBallSpeed(ball);
@@ -97,7 +97,7 @@ function draw() {
     if (
         ball.x + ball.radius > player2.x &&
         ball.y > player2.y &&
-        ball.y < player2.y + paddleHeight
+        ball.y < player2.y + 185
     ) {
         ball.speedX = -ball.speedX;
         increaseBallSpeed(ball);
@@ -126,8 +126,8 @@ function draw() {
         player2.y += player2.speed;
     }
 
-    player1.y = Math.max(0, Math.min(player1.y, canvas.height - paddleHeight));
-    player2.y = Math.max(0, Math.min(player2.y, canvas.height - paddleHeight));
+    player1.y = Math.max(0, Math.min(player1.y, canvas.height - 185));
+    player2.y = Math.max(0, Math.min(player2.y, canvas.height - 185));
 }
 
 window.addEventListener('resize', () => {
@@ -141,18 +141,18 @@ function startGame() {
     hideStartMenu();
     showGameCanvas();
 
-    player1 = { // Initialize player1
+    player1 = {
         x: 120,
-        y: canvas.height / 2 - paddleHeight / 2,
+        y: canvas.height / 2 - 185 / 2,
         dy: 0,
         speed: 8,
         color: '#45aee6',
         score: 0
     };
 
-    player2 = { // Initialize player2
+    player2 = {
         x: canvas.width - 120,
-        y: canvas.height / 2 - paddleHeight / 2,
+        y: canvas.height / 2 - 185 / 2,
         dy: 0,
         speed: 8,
         color: '#e65045',
