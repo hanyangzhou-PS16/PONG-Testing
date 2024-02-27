@@ -5,6 +5,14 @@ body {
     background-color: #f0f0f0;
 }
 
+#startMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 #startMenu .title {
     font-size: 48px;
     color: #333;
