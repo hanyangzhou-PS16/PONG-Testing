@@ -63,6 +63,11 @@ function keyUpHandler(e) {
     keysPressed[e.key] = false;
 }
 
+function drawPaddle(x, y, color) {
+    ctx.fillStyle = color;
+    ctx.fillRect(x, y, paddleWidth, paddleHeight);
+}
+
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
