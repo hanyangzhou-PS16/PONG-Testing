@@ -68,6 +68,24 @@ function drawPaddle(x, y, color) {
     ctx.fillRect(x, y, paddleWidth, paddleHeight);
 }
 
+const player1 = {
+    x: 120,
+    y: canvas.height / 2 - paddleHeight / 2,
+    dy: 0,
+    speed: 8,
+    color: '#45aee6',
+    score: 0
+};
+
+const player2 = {
+    x: canvas.width - 120,
+    y: canvas.height / 2 - paddleHeight / 2,
+    dy: 0,
+    speed: 8,
+    color: '#e65045',
+    score: 0
+};
+
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -150,24 +168,6 @@ function startGame() {
         maxSpeed: 12,
         speedIncrement: 0.5,
         color: 'black'
-    };
-
-    const player1 = {
-        x: 120,
-        y: canvas.height / 2 - paddleHeight / 2,
-        dy: 0,
-        speed: 8,
-        color: '#45aee6',
-        score: 0
-    };
-
-    const player2 = {
-        x: canvas.width - 120,
-        y: canvas.height / 2 - paddleHeight / 2,
-        dy: 0,
-        speed: 8,
-        color: '#e65045',
-        score: 0
     };
 
     draw();
