@@ -75,6 +75,14 @@ function drawPaddle(x, y, color) {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+    ctx.fillStyle = ball.color;
+    ctx.fill();
+    ctx.closePath();
+
+    ball.x += ball.speedX;
+    ball.y += ball.speedY;
     drawPaddle(player1.x, player1.y, player1.color);
     drawPaddle(player2.x, player2.y, player2.color);
 
