@@ -81,8 +81,6 @@ function draw() {
     ctx.fill();
     ctx.closePath();
 
-    ball.x += ball.speedX;
-    ball.y += ball.speedY;
     drawPaddle(player1.x, player1.y, player1.color);
     drawPaddle(player2.x, player2.y, player2.color);
 
@@ -179,7 +177,7 @@ function startGame() {
         radius: 15,
         speedX: 5,
         speedY: 5,
-        maxSpeed: 12,
+        maxSpeed: 10,
         speedIncrement: 0.5,
         color: 'white'
     };
