@@ -174,3 +174,7 @@ function startGame() {
 
     setInterval(draw, 1000 / 60);
 }
+
+document.getElementById('startButton').addEventListener('click', startGame);
+
+document.getElementById('controlsButton').addEventListener('click', showControlsPage);
