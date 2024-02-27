@@ -176,10 +176,9 @@ function startGame() {
         color: 'black'
     };
 
-    draw();
-
     document.addEventListener('keydown', keyDownHandler, false);
     document.addEventListener('keyup', keyUpHandler, false);
 
     setInterval(draw, 1000 / 60);
+    draw();
 }
