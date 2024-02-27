@@ -66,7 +66,16 @@ function keyUpHandler(e) {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    drawBall();
+    const ball = {
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        radius: 15,
+        speedX: 5,
+        speedY: 5,
+        maxSpeed: 12,
+        speedIncrement: 0.5,
+        color: 'black'
+    };
 
     drawPaddle(player1.x, player1.y, player1.color);
     drawPaddle(player2.x, player2.y, player2.color);
@@ -133,17 +142,6 @@ resizeCanvas();
 function startGame() {
     hideStartMenu();
     showGameCanvas();
-
-    const ball = {
-        x: canvas.width / 2,
-        y: canvas.height / 2,
-        radius: 15,
-        speedX: 5,
-        speedY: 5,
-        maxSpeed: 12,
-        speedIncrement: 0.5,
-        color: 'black'
-    };
 
     const paddleWidth = 25;
     const paddleHeight = 185;
