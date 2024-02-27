@@ -105,11 +105,17 @@ function draw() {
 
     if (ball.x - ball.radius < 0) {
         player2.score++;
-        document.getElementById('player2Score').textContent = player2.score;
+        const player2ScoreElement = document.getElementById('player2Score');
+        if (player2ScoreElement) {
+            player2ScoreElement.textContent = player2.score;
+        }
         resetBall();
     } else if (ball.x + ball.radius > canvas.width) {
         player1.score++;
-        document.getElementById('player1Score').textContent = player1.score;
+        const player1ScoreElement = document.getElementById('player1Score');
+        if (player1ScoreElement) {
+            player1ScoreElement.textContent = player1.score;
+        }
         resetBall();
     }
 
