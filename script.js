@@ -177,7 +177,7 @@ function startGame() {
         radius: 15,
         speedX: 5,
         speedY: 5,
-        maxSpeed: 10,
+        maxSpeed: 12,
         speedIncrement: 0.5,
         color: 'white'
     };
