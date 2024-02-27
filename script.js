@@ -181,7 +181,7 @@ function startGame() {
         speedY: 5,
         maxSpeed: 12,
         speedIncrement: 0.5,
-        color: 'black'
+        color: 'white'
     };
 
     document.addEventListener('keydown', keyDownHandler, false);
