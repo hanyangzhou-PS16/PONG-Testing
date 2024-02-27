@@ -33,8 +33,6 @@ function showControlsPage() {
 function showGameCanvas() {
     canvas.style.display = 'block';
 }
-const canvas = document.getElementById('pongCanvas');
-const ctx = canvas.getContext('2d');
 
 function resizeCanvas() {
     canvas.width = window.innerWidth - 28;
@@ -47,6 +45,7 @@ window.addEventListener('resize', () => {
 });
 
 resizeCanvas();
+
 function startGame() {
     hideStartMenu();
     showGameCanvas();
@@ -174,7 +173,3 @@ function startGame() {
 
     setInterval(draw, 1000 / 60);
 }
-
-document.getElementById('startButton').addEventListener('click', startGame);
-
-document.getElementById('controlsButton').addEventListener('click', showControlsPage);
