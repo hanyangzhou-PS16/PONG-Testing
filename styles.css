@@ -50,15 +50,20 @@ canvas {
 
 #scoreboard {
     position: absolute;
-    top: 50%;
+    top: 10%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
 }
 
-#player1Score,
+#player1Score {
+    font-size: 24px;
+    font-color: ;
+    margin: 0 10px; 
+}
 #player2Score {
     font-size: 24px;
+    font-color: ;
     margin: 0 10px;
 }
