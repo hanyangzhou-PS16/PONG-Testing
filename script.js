@@ -75,7 +75,7 @@ function drawPaddle(x, y, color) {
 function handleRandomEvent() {
     const randomEvent = Math.floor(Math.random() * 4) + 1;
     let eventText = '';
-
+    console.log("RANDOM EVENT")
     switch (randomEvent) {
         case 1:
             ball.speedX /= 2;
@@ -154,6 +154,7 @@ function draw() {
     ) {
         ball.speedX = -ball.speedX;
         increaseBallSpeed();
+        probability = Math.random();
         if (probability <= 0.3) {
             handleRandomEvent()
         }
