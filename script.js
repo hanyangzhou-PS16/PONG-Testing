@@ -3,7 +3,7 @@ const controlsPage = document.getElementById('controlsPage');
 const canvas = document.getElementById('pongCanvas');
 const ctx = canvas.getContext('2d');
 const keysPressed = {};
-var player1, player2, ball, drawInterval;
+var player1, player2, ball, drawInterval, probability;
 
 showStartMenu();
 
@@ -72,6 +72,49 @@ function drawPaddle(x, y, color) {
     ctx.fillRect(x, y, paddleWidth, paddleHeight);
 }
 
+function handleRandomEvent() {
+    const randomEvent = Math.floor(Math.random() * 4) + 1;
+    let eventText = '';
+
+    switch (randomEvent) {
+        case 1:
+            ball.speedX /= 2;
+            ball.speedY /= 2;
+            eventText = 'Slow Ball';
+            break;
+        case 2:
+            ball.speedX *= 2;
+            ball.speedY *= 2;
+            ball.speedX = Math.min(ball.speedX, ball.maxSpeed);
+            ball.speedY = Math.min(ball.speedY, ball.maxSpeed);
+            eventText = 'Fast Ball';
+            break;
+        case 3:
+            player1.height += 20;
+            player2.height += 20;
+            eventText = 'Long Paddles';
+            break;
+        case 4:
+            ball.color = '#00FFFF';
+            setTimeout(() => {
+                ball.color = 'white';
+            }, 5000);
+            eventText = 'Frozen Ball';
+            break;
+        default:
+            break;
+    }
+
+    const eventDisplay = document.createElement('div');
+    eventDisplay.textContent = eventText;
+    eventDisplay.classList.add('event-text');
+    document.body.appendChild(eventDisplay);
+
+    setTimeout(() => {
+        document.body.removeChild(eventDisplay);
+    }, 3000);
+}
+
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -98,6 +141,10 @@ function draw() {
     ) {
         ball.speedX = -ball.speedX;
         increaseBallSpeed();
+        probability = Math.random();
+        if (probability <= 0.3) {
+            handleRandomEvent()
+        }
     }
 
     if (
@@ -107,6 +154,9 @@ function draw() {
     ) {
         ball.speedX = -ball.speedX;
         increaseBallSpeed();
+        if (probability <= 0.3) {
+            handleRandomEvent()
+        }
     }
 
     if (ball.x - ball.radius < 0) {
