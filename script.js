@@ -79,25 +79,25 @@ function handleRandomEvent() {
         return;
     }
 
-    const randomEvent = Math.floor(Math.random() * 4) + 1;
+    const randomEvent = Math.floor(Math.random() * 5) + 1;
     let eventText = '';
     switch (randomEvent) {
         case 1:
             ball.speedX = Math.floor(ball.speedX / 2);
             ball.speedY = Math.floor(ball.speedY / 2);
-            eventText = 'Slow Ball';
+            eventText = 'Calming Speed';
             break;
         case 2:
             ball.speedX *= 2;
             ball.speedY *= 2;
             ball.speedX = Math.min(ball.speedX, ball.maxSpeed);
             ball.speedY = Math.min(ball.speedY, ball.maxSpeed);
-            eventText = 'Fast Ball';
+            eventText = 'Raging Speed';
             break;
         case 3:
             player1.height += 80;
             player2.height += 80;
-            eventText = 'Long Paddles';
+            eventText = 'Longer Paddles';
             break;
         case 4:
             ball.color = '#00FFFF';
@@ -113,6 +113,11 @@ function handleRandomEvent() {
             eventText = 'Frozen Ball';
             break;
         default:
+            break;
+        case 5:
+            ball.speedX = -ball.speedX
+            ball.speedY = -ball.speedY
+            eventText = 'Telekinesis ';
             break;
     }
 
@@ -137,8 +142,8 @@ function draw() {
     ctx.fill();
     ctx.closePath();
 
-    drawPaddle(player1.x, player1.y, player1.color,  player1.height);
-    drawPaddle(player2.x, player2.y, player2.color,  player2.height);
+    drawPaddle(player1.x, player1.y, player1.color, player1.height);
+    drawPaddle(player2.x, player2.y, player2.color, player2.height);
 
     if (ball.speedX != 0 || ball.speedY != 0) {
         ball.x += ball.speedX;
@@ -158,7 +163,7 @@ function draw() {
         increaseBallSpeed();
         probability = Math.random();
         if (probability <= 0.3) {
-            handleRandomEvent()
+            handleRandomEvent();
         }
     }
 
@@ -171,7 +176,7 @@ function draw() {
         increaseBallSpeed();
         probability = Math.random();
         if (probability <= 0.3) {
-            handleRandomEvent()
+            handleRandomEvent();
         }
     }
 
