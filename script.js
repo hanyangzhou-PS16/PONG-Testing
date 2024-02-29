@@ -127,9 +127,9 @@ function handleRandomEvent() {
 
     lastRandomEventTime = currentTime;
 
-    const event = document.createElement('div');
+    const event = document.createElement('h1');
     event.textContent = eventText;
-    event.className = 'randomevent';
+    event.class = 'randomevent';
     document.body.appendChild(event);
 
     setTimeout(() => {
