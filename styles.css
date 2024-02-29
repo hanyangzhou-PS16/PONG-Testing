@@ -11,8 +11,8 @@ span {
 
 .event-text {
     position: fixed;
-    top: 12%;
-    left: 12%;
+    top: 12% !important;
+    left: 12% !important;
     transform: translate(-50%, -50%);
     font-size: 24px;
     color: #ff3b30;
