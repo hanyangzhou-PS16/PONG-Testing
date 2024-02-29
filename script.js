@@ -121,7 +121,7 @@ function handleRandomEvent() {
         case 5:
             ball.speedX = -ball.speedX
             ball.speedY = -ball.speedY
-            eventText = 'Telekinesis ';
+            eventText = 'Telekinesis';
             break;
     }
 
@@ -129,6 +129,7 @@ function handleRandomEvent() {
 
     const event = document.createElement('div');
     event.textContent = eventText;
+    event.className = 'randomevent';
     document.body.appendChild(event);
 
     setTimeout(() => {
