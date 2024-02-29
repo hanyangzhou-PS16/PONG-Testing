@@ -5,7 +5,7 @@ const ctx = canvas.getContext('2d');
 const keysPressed = {};
 var player1, player2, ball, drawInterval, probability, oldSpeedX, oldSpeedY;
 let lastRandomEventTime = 0;
-const cooldownDuration = 5000;
+const cooldownDuration = 8000;
 
 showStartMenu();
 
@@ -97,6 +97,10 @@ function handleRandomEvent() {
         case 3:
             player1.height += 80;
             player2.height += 80;
+            setTimeout(() => {
+                player1.height -= 80;
+                player2.height -= 80;
+            }, 5000);
             eventText = 'Longer Paddles';
             break;
         case 4:
