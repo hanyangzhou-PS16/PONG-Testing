@@ -67,11 +67,10 @@ function keyUpHandler(e) {
     keysPressed[e.key] = false;
 }
 
-function drawPaddle(x, y, color) {
+function drawPaddle(x, y, color, height) {
     const paddleWidth = 25;
-    const paddleHeight = 185;
     ctx.fillStyle = color;
-    ctx.fillRect(x, y, paddleWidth, paddleHeight);
+    ctx.fillRect(x, y, paddleWidth, height);
 }
 
 function handleRandomEvent() {
@@ -82,11 +81,10 @@ function handleRandomEvent() {
 
     const randomEvent = Math.floor(Math.random() * 4) + 1;
     let eventText = '';
-    console.log("RANDOM EVENT")
     switch (randomEvent) {
         case 1:
-            ball.speedX /= 2;
-            ball.speedY /= 2;
+            ball.speedX = Math.floor(ball.speedX / 2);
+            ball.speedY = Math.floor(ball.speedY / 2);
             eventText = 'Slow Ball';
             break;
         case 2:
@@ -97,14 +95,14 @@ function handleRandomEvent() {
             eventText = 'Fast Ball';
             break;
         case 3:
-            player1.height += 50;
-            player2.height += 50;
+            player1.height += 80;
+            player2.height += 80;
             eventText = 'Long Paddles';
             break;
         case 4:
             ball.color = '#00FFFF';
-            oldSpeedX = ball.speedX
-            oldSpeedY = ball.speedY
+            oldSpeedX = ball.speedX;
+            oldSpeedY = ball.speedY;
             ball.speedX = 0;
             ball.speedY = 0;
             setTimeout(() => {
@@ -139,8 +137,8 @@ function draw() {
     ctx.fill();
     ctx.closePath();
 
-    drawPaddle(player1.x, player1.y, player1.color);
-    drawPaddle(player2.x, player2.y, player2.color);
+    drawPaddle(player1.x, player1.y, player1.color,  player1.height);
+    drawPaddle(player2.x, player2.y, player2.color,  player2.height);
 
     if (ball.speedX != 0 || ball.speedY != 0) {
         ball.x += ball.speedX;
