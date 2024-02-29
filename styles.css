@@ -5,15 +5,9 @@ body {
     background-color: #b5d1ff;
 }
 
-span {
-    color: #ffffff !important;
-}
-
-.randomevent {
-    position: fixed;
+.randomEvent {
     top: 12%;
     left: 12%;
-    transform: translate(-50%, -50%);
     font-size: 24px;
     color: #ff3b30;
     font-family: 'Montserrat', sans-serif;
