@@ -90,8 +90,8 @@ function handleRandomEvent() {
             eventText = 'Fast Ball';
             break;
         case 3:
-            player1.height += 20;
-            player2.height += 20;
+            player1.height += 50;
+            player2.height += 50;
             eventText = 'Long Paddles';
             break;
         case 4:
@@ -133,11 +133,9 @@ function draw() {
     drawPaddle(player1.x, player1.y, player1.color);
     drawPaddle(player2.x, player2.y, player2.color);
 
-    ball.x += ball.speedX;
-    ball.y += ball.speedY;
-
-    if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
-        ball.speedY = -ball.speedY;
+    if (ball.speedX !== 0 || ball.speedY !== 0) { // Check if the ball is not frozen
+        ball.x += ball.speedX;
+        ball.y += ball.speedY;
     }
 
     if (
