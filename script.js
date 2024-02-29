@@ -4,6 +4,8 @@ const canvas = document.getElementById('pongCanvas');
 const ctx = canvas.getContext('2d');
 const keysPressed = {};
 var player1, player2, ball, drawInterval, probability, oldSpeedX, oldSpeedY;
+let lastRandomEventTime = 0;
+const cooldownDuration = 5000;
 
 showStartMenu();
 
@@ -73,9 +75,14 @@ function drawPaddle(x, y, color) {
 }
 
 function handleRandomEvent() {
+    const currentTime = new Date().getTime();
+    if (currentTime - lastRandomEventTime < cooldownDuration) {
+        return;
+    }
+
     const randomEvent = Math.floor(Math.random() * 4) + 1;
     let eventText = '';
-    console.log("RANDOM EVENT")
+
     switch (randomEvent) {
         case 1:
             ball.speedX /= 2;
@@ -96,8 +103,8 @@ function handleRandomEvent() {
             break;
         case 4:
             ball.color = '#00FFFF';
-            oldSpeedX = ball.speedX
-            oldSpeedY = ball.speedY
+            oldSpeedX = ball.speedX;
+            oldSpeedY = ball.speedY;
             ball.speedX = 0;
             ball.speedY = 0;
             setTimeout(() => {
@@ -110,6 +117,8 @@ function handleRandomEvent() {
         default:
             break;
     }
+
+    lastRandomEventTime = currentTime;
 
     const eventDisplay = document.createElement('div');
     eventDisplay.textContent = eventText;
