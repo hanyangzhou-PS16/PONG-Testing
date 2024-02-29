@@ -6,15 +6,15 @@ body {
 }
 
 span {
-    color: #ffffff;
+    color: !important #ffffff;
 }
 
 .event-text {
     position: fixed;
-    top: 50%;
-    left: 50%;
+    top: 12%;
+    left: 12%;
     transform: translate(-50%, -50%);
-    font-size: 32px;
+    font-size: 24px;
     color: #ff3b30;
     font-family: 'Montserrat', sans-serif;
     padding: 20px;
@@ -26,12 +26,12 @@ span {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #b5d1ff;
+    background-color: !important #b5d1ff;
 }
 
 #startMenu .title {
     font-size: 48px;
-    color: #ffffff; /* White title text */
+    color: #ffffff;
     margin-bottom: 20px;
 }
 
