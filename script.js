@@ -129,7 +129,7 @@ function handleRandomEvent() {
 
     const event = document.createElement('h1');
     event.textContent = eventText;
-    event.class = 'randomevent';
+    event.className = 'randomEvent';
     document.body.appendChild(event);
 
     setTimeout(() => {
