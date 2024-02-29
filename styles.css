@@ -26,6 +26,7 @@ span {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #b5d1ff;
 }
 
 #startMenu .title {
