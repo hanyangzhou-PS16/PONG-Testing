@@ -127,12 +127,12 @@ function handleRandomEvent() {
 
     lastRandomEventTime = currentTime;
 
-    const eventDisplay = document.createElement('div');
-    eventDisplay.textContent = eventText;
-    document.body.appendChild(eventDisplay);
+    const event = document.createElement('div');
+    event.textContent = eventText;
+    document.body.appendChild(event);
 
     setTimeout(() => {
-        document.body.removeChild(eventDisplay);
+        document.body.removeChild(event);
     }, 3000);
 }
 
