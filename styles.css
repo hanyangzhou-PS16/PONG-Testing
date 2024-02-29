@@ -9,10 +9,10 @@ span {
     color: #ffffff !important;
 }
 
-.eventDisplay {
+#event {
     position: fixed;
-    top: 12% !important;
-    left: 12% !important;
+    top: 12%;
+    left: 12%;
     transform: translate(-50%, -50%);
     font-size: 24px;
     color: #ff3b30;
