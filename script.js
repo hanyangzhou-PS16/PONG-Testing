@@ -82,7 +82,7 @@ function handleRandomEvent() {
 
     const randomEvent = Math.floor(Math.random() * 4) + 1;
     let eventText = '';
-
+    console.log("RANDOM EVENT")
     switch (randomEvent) {
         case 1:
             ball.speedX /= 2;
@@ -103,8 +103,8 @@ function handleRandomEvent() {
             break;
         case 4:
             ball.color = '#00FFFF';
-            oldSpeedX = ball.speedX;
-            oldSpeedY = ball.speedY;
+            oldSpeedX = ball.speedX
+            oldSpeedY = ball.speedY
             ball.speedX = 0;
             ball.speedY = 0;
             setTimeout(() => {
