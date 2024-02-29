@@ -12,6 +12,7 @@ body {
     color: #ff3b30;
     font-family: 'Montserrat', sans-serif;
     padding: 20px;
+    z-index: 100;
 }
 
 #startMenu {
