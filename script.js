@@ -3,7 +3,7 @@ const controlsPage = document.getElementById('controlsPage');
 const canvas = document.getElementById('pongCanvas');
 const ctx = canvas.getContext('2d');
 const keysPressed = {};
-var player1, player2, ball, drawInterval, probability;
+var player1, player2, ball, drawInterval, probability, oldSpeedX, oldSpeedY;
 
 showStartMenu();
 
@@ -96,8 +96,14 @@ function handleRandomEvent() {
             break;
         case 4:
             ball.color = '#00FFFF';
+            oldSpeedX = ball.speedX
+            oldSpeedY = ball.speedY
+            ball.speedX = 0;
+            ball.speedY = 0;
             setTimeout(() => {
                 ball.color = 'white';
+                ball.speedX = oldSpeedX;
+                ball.speedY = oldSpeedY;
             }, 5000);
             eventText = 'Frozen Ball';
             break;
