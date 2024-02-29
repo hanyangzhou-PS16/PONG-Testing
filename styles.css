@@ -6,7 +6,7 @@ body {
 }
 
 span {
-    color: !important #ffffff;
+    color: #ffffff !important;
 }
 
 .event-text {
@@ -26,7 +26,7 @@ span {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: !important #b5d1ff;
+    background-color: #b5d1ff !important;
 }
 
 #startMenu .title {
