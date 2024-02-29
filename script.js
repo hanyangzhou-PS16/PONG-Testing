@@ -138,6 +138,10 @@ function draw() {
         ball.y += ball.speedY;
     }
 
+    if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+        ball.speedY = -ball.speedY;
+    }
+
     if (
         ball.x - ball.radius < player1.x + 25 &&
         ball.y > player1.y &&
