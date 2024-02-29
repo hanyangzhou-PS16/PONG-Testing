@@ -232,6 +232,7 @@ function startGame() {
         y: canvas.height / 2 - 185 / 2,
         dy: 0,
         speed: 8,
+        height: 185,
         color: '#45aee6',
         score: 0
     };
@@ -241,6 +242,7 @@ function startGame() {
         y: canvas.height / 2 - 185 / 2,
         dy: 0,
         speed: 8,
+        height: 185,
         color: '#e65045',
         score: 0
     };
