@@ -133,12 +133,12 @@ function draw() {
     drawPaddle(player1.x, player1.y, player1.color);
     drawPaddle(player2.x, player2.y, player2.color);
 
-    if (ball.speedX !== 0 || ball.speedY !== 0) { // Check if the ball is not frozen
+    if (ball.speedX != 0 || ball.speedY != 0) {
         ball.x += ball.speedX;
         ball.y += ball.speedY;
     }
 
-    if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+    if (ball.y + ball.radius >= canvas.height || ball.y - ball.radius <= 0) {
         ball.speedY = -ball.speedY;
     }
 
