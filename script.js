@@ -163,7 +163,7 @@ function draw() {
         increaseBallSpeed();
         probability = Math.random();
         if (probability <= 0.35) {
-            setInterval(handleRandomEvent, 200);
+            setInterval(handleRandomEvent, 300);
         }
     }
 
@@ -176,7 +176,7 @@ function draw() {
         increaseBallSpeed();
         probability = Math.random();
         if (probability <= 0.35) {
-            setInterval(handleRandomEvent, 200);
+            setInterval(handleRandomEvent, 300);
         }
     }
 
