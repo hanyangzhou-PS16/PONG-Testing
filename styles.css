@@ -6,7 +6,7 @@ body {
     color: #ffffff;
 }
 
-p {
+.event-text {
     position: fixed;
     top: 50%;
     left: 50%;
