@@ -27,7 +27,7 @@ body {
 
 #startMenu .title {
     font-size: 48px;
-    color: #ffffff;
+    color: #ffffff; /* White title text */
     margin-bottom: 20px;
 }
 
