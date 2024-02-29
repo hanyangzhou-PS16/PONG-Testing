@@ -3,7 +3,6 @@ body {
     overflow: hidden;
     font-family: 'Montserrat', sans-serif;
     background-color: #121212;
-    color: #ffffff;
 }
 
 .event-text {
@@ -13,7 +12,7 @@ body {
     transform: translate(-50%, -50%);
     font-size: 32px;
     color: #ff3b30;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     padding: 20px;
 }
 
