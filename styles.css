@@ -58,6 +58,7 @@ canvas {
     border: 14px solid #e88aff;
     background-color: #000000;
     box-sizing: border-box;
+    z-index: 1;
 }
 
 #scoreboard {
