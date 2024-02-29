@@ -9,7 +9,7 @@ span {
     color: #ffffff !important;
 }
 
-#event {
+.randomevent {
     position: fixed;
     top: 12%;
     left: 12%;
