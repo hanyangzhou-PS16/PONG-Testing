@@ -1,18 +1,19 @@
 body {
     margin: 0;
     overflow: hidden;
-    font-family: 'Roboto', sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #121212;
+    color: #ffffff; /* White text */
 }
 
 .event-text {
     position: fixed;
-    top: 12%;
-    left: 12%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 26px;
-    color: #ffffff;
-    font-family: Arial, sans-serif;
+    font-size: 32px;
+    color: #ff3b30;
+    font-family: 'Roboto', sans-serif;
     padding: 20px;
 }
 
@@ -26,18 +27,11 @@ body {
 
 #startMenu .title {
     font-size: 48px;
-    color: #333;
+    color: #ffffff;
     margin-bottom: 20px;
 }
 
 #startMenu .button-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.button-container {
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -65,11 +59,6 @@ canvas {
     border: 14px solid #e88aff;
     background-color: #000000;
     box-sizing: border-box;
-}
-
-span {
-    font-size: 24px;
-    color: #ffffff;
 }
 
 #scoreboard {
