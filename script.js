@@ -152,7 +152,7 @@ function draw() {
     if (
         ball.x - ball.radius < player1.x + 25 &&
         ball.y > player1.y &&
-        ball.y < player1.y + 185
+        ball.y < player1.y + player1.height
     ) {
         ball.speedX = -ball.speedX;
         increaseBallSpeed();
@@ -165,7 +165,7 @@ function draw() {
     if (
         ball.x + ball.radius > player2.x &&
         ball.y > player2.y &&
-        ball.y < player2.y + 185
+        ball.y < player2.y + player2.height
     ) {
         ball.speedX = -ball.speedX;
         increaseBallSpeed();
@@ -201,19 +201,20 @@ function draw() {
 
     if (keysPressed['w']) {
         player1.y -= player1.speed;
+        player1.y = Math.max(0, player1.y);
     }
     if (keysPressed['s']) {
         player1.y += player1.speed;
+        player1.y = Math.min(canvas.height - player1.height, player1.y);
     }
     if (keysPressed['ArrowUp']) {
         player2.y -= player2.speed;
+        player2.y = Math.max(0, player2.y);
     }
     if (keysPressed['ArrowDown']) {
         player2.y += player2.speed;
+        player2.y = Math.min(canvas.height - player2.height, player2.y);
     }
-
-    player1.y = Math.max(0, Math.min(player1.y, canvas.height - 185));
-    player2.y = Math.max(0, Math.min(player2.y, canvas.height - 185));
 }
 
 window.addEventListener('resize', () => {
