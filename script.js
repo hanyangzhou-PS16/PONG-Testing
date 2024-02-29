@@ -125,7 +125,14 @@ function handleRandomEvent() {
 
     const eventDisplay = document.createElement('div');
     eventDisplay.textContent = eventText;
-    eventDisplay.classList.add('event-text');
+    eventDisplay.style.position = 'fixed';
+    eventDisplay.style.top = '50%';
+    eventDisplay.style.left = '50%';
+    eventDisplay.style.transform = 'translate(-50%, -50%)';
+    eventDisplay.style.fontSize = '32px';
+    eventDisplay.style.color = '#ff3b30';
+    eventDisplay.style.fontFamily = 'Roboto, sans-serif';
+    eventDisplay.style.padding = '20px';
     document.body.appendChild(eventDisplay);
 
     setTimeout(() => {
