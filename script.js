@@ -116,8 +116,6 @@ function handleRandomEvent() {
             }, 5000);
             eventText = 'Frozen Ball';
             break;
-        default:
-            break;
         case 5:
             ball.speedX = -ball.speedX
             ball.speedY = -ball.speedY
