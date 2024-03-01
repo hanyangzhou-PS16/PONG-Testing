@@ -5,7 +5,7 @@ const ctx = canvas.getContext('2d');
 const keysPressed = {};
 var player1, player2, ball, drawInterval, eventInterval, probability, oldSpeedX, oldSpeedY;
 let lastRandomEventTime = 0;
-const cooldownDuration = 8000;
+const cooldownDuration = 3000;
 
 showStartMenu();
 
@@ -80,7 +80,7 @@ function handleRandomEvent() {
     }
 
     const randomEvent = Math.floor(Math.random() * 5) + 1;
-    let eventText = '';
+    var eventText = "Event!";
     switch (randomEvent) {
         case 1:
             ball.speedX = Math.floor(ball.speedX / 2);
