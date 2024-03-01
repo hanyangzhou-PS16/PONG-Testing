@@ -117,25 +117,23 @@ function handleRandomEvent() {
             eventText = 'Frozen Ball';
             break;
         case 5:
-            ball.speedX = -ball.speedX
-            ball.speedY = -ball.speedY
+            ball.speedX = -ball.speedX;
+            ball.speedY = -ball.speedY;
             eventText = 'Telekinesis';
             break;
     }
 
     console.log("Event text:", eventText);
 
+    const eventTextElement = document.getElementById('eventText');
+    eventTextElement.textContent = eventText;
+
+    eventTextElement.style.display = 'block';
+
     lastRandomEventTime = currentTime;
 
-    const event = document.createElement('h1');
-    event.textContent = eventText;
-    event.className = 'randomEvent';
-    document.body.appendChild(event);
-
-    console.log("Event element:", event);
-
     setTimeout(() => {
-        document.body.removeChild(event);
+        eventTextElement.style.display = 'none';
     }, 3000);
 }
 
