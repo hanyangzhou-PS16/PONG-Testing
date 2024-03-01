@@ -125,12 +125,16 @@ function handleRandomEvent() {
             break;
     }
 
+    console.log("Event text:", eventText);
+
     lastRandomEventTime = currentTime;
 
     const event = document.createElement('h1');
     event.textContent = eventText;
     event.className = 'randomEvent';
     document.body.appendChild(event);
+
+    console.log("Event element:", event);
 
     setTimeout(() => {
         document.body.removeChild(event);
