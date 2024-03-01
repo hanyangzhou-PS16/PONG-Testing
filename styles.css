@@ -1,16 +1,16 @@
 body {
     margin: 0;
     overflow: hidden;
-    font-family: 'Montserrat', sans-serif;
-    background-color: #b5d1ff;
+    font-family: 'Press Start 2P', sans-serif;
+    background-color: #176785;
 }
 
 .randomEvent {
     top: 12%;
-    left: 12%;
-    font-size: 24px;
+    left: 50%;
+    font-size: 42px;
     color: #ff3b30;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Press Start 2P', sans-serif;
     padding: 20px;
     z-index: 100;
 }
