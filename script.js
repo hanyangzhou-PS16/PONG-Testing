@@ -3,7 +3,7 @@ const controlsPage = document.getElementById('controlsPage');
 const canvas = document.getElementById('pongCanvas');
 const ctx = canvas.getContext('2d');
 const keysPressed = {};
-var player1, player2, ball, drawInterval, probability, oldSpeedX, oldSpeedY;
+var player1, player2, ball, drawInterval, eventInterval, probability, oldSpeedX, oldSpeedY;
 let lastRandomEventTime = 0;
 const cooldownDuration = 8000;
 
@@ -166,9 +166,6 @@ function draw() {
         ball.speedX = -ball.speedX;
         increaseBallSpeed();
         probability = Math.random();
-        if (probability <= 0.2) {
-            setTimeout(handleRandomEvent, 300);
-        }
     }
 
     if (
@@ -179,9 +176,6 @@ function draw() {
         ball.speedX = -ball.speedX;
         increaseBallSpeed();
         probability = Math.random();
-        if (probability <= 0.2) {
-            setTimeout(handleRandomEvent, 300);
-        }
     }
 
     if (ball.x - ball.radius < 0) {
@@ -274,10 +268,12 @@ function startGame() {
     draw();
 
     drawInterval = setInterval(draw, 1000 / 60);
+    eventInterval = setInterval(handleRandomEvent, 10000);
 }
 
 function endGame(winner) {
     clearInterval(drawInterval);
+    clearInterval(eventInterval);
 
     const winnerText = document.createElement('p');
     winnerText.textContent = `Player ${winner} won!`;
