@@ -268,7 +268,7 @@ function startGame() {
     draw();
 
     drawInterval = setInterval(draw, 1000 / 60);
-    eventInterval = setInterval(handleRandomEvent, 10000);
+    eventInterval = setInterval(handleRandomEvent, 5000);
 }
 
 function endGame(winner) {
