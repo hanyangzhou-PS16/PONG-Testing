@@ -138,7 +138,13 @@ function handleRandomEvent() {
             eventText = 'Perplexity Pong';
         case 8:
             ball.color = 'black';
-            var blinkInterval = setInterval(() => {ball.color = 'white';}, 500);
+            var blinkInterval = setInterval(() => {
+                if (ball.color == 'white') {
+                    
+                } else if (ball.color == 'black') {
+                    
+                }
+            }, 500);
             setTimeout(() => {
                 clearInterval(blinkInterval)
             }, 3000)
