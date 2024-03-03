@@ -146,8 +146,9 @@ function handleRandomEvent() {
                 }
             }, 300);
             setTimeout(() => {
-                clearInterval(blinkInterval)
-            }, 3001)
+                clearInterval(blinkInterval);
+                ball.color = 'white';
+            }, 3000)
             eventText = 'Blinking Ball';
     }
 
