@@ -140,11 +140,11 @@ function handleRandomEvent() {
             ball.color = 'black';
             var blinkInterval = setInterval(() => {
                 if (ball.color == 'white') {
-                    
+                    ball.color = 'black';
                 } else if (ball.color == 'black') {
-                    
+                    ball.color = 'white';
                 }
-            }, 500);
+            }, 300);
             setTimeout(() => {
                 clearInterval(blinkInterval)
             }, 3000)
