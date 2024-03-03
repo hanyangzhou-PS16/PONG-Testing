@@ -79,20 +79,20 @@ function handleRandomEvent() {
         return;
     }
 
-    const randomEvent = Math.floor(Math.random() * 5) + 1;
+    const randomEvent = Math.floor(Math.random() * 8) + 1;
     var eventText = "Event!";
     switch (randomEvent) {
         case 1:
             ball.speedX = Math.floor(ball.speedX / 2);
             ball.speedY = Math.floor(ball.speedY / 2);
-            eventText = 'Calming Speed';
+            eventText = 'Calming Pace';
             break;
         case 2:
             ball.speedX *= 2;
             ball.speedY *= 2;
             ball.speedX = Math.min(ball.speedX, ball.maxSpeed);
             ball.speedY = Math.min(ball.speedY, ball.maxSpeed);
-            eventText = 'Raging Speed';
+            eventText = 'Raging Pace';
             break;
         case 3:
             player1.height += 80;
@@ -100,10 +100,19 @@ function handleRandomEvent() {
             setTimeout(() => {
                 player1.height -= 80;
                 player2.height -= 80;
-            }, 5000);
-            eventText = 'Longer Paddles';
+            }, 3000);
+            eventText = 'Stretched Paddles';
             break;
         case 4:
+            player1.height -= 80;
+            player2.height -= 80;
+            setTimeout(() => {
+                player1.height += 80;
+                player2.height += 80;
+            }, 3000);
+            eventText = 'Compressed Paddles';
+            break;
+        case 5:
             ball.color = '#00FFFF';
             oldSpeedX = ball.speedX;
             oldSpeedY = ball.speedY;
@@ -113,14 +122,25 @@ function handleRandomEvent() {
                 ball.color = 'white';
                 ball.speedX = oldSpeedX;
                 ball.speedY = oldSpeedY;
-            }, 5000);
-            eventText = 'Frozen Ball';
+            }, 3000);
+            eventText = 'Frosted Ball';
             break;
-        case 5:
+        case 6:
             ball.speedX = -ball.speedX;
             ball.speedY = -ball.speedY;
-            eventText = 'Telekinesis';
+            eventText = 'Reversed Route';
             break;
+        case 7:
+            oldSpeedX = ball.speedX;
+            oldSpeedY = ball.speedY;
+            ball.speedX = oldSpeedY;
+            ball.speedY = oldSpeedX;
+            eventText = 'Perplexity Pong';
+        case 8:
+            ball.color = 'black';
+            setTimeout(() => {
+                ball.color = 'white';
+            }, 3000);
     }
 
     console.log("Event text:", eventText);
@@ -134,7 +154,7 @@ function handleRandomEvent() {
 
     setTimeout(() => {
         eventTextElement.style.display = 'none';
-    }, 3000);
+    }, 2000);
 }
 
 function draw() {
@@ -165,7 +185,6 @@ function draw() {
     ) {
         ball.speedX = -ball.speedX;
         increaseBallSpeed();
-        probability = Math.random();
     }
 
     if (
@@ -175,7 +194,6 @@ function draw() {
     ) {
         ball.speedX = -ball.speedX;
         increaseBallSpeed();
-        probability = Math.random();
     }
 
     if (ball.x - ball.radius < 0) {
