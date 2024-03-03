@@ -80,7 +80,7 @@ function handleRandomEvent() {
     }
 
     const randomEvent = Math.floor(Math.random() * 8) + 1;
-    var eventText = "Event!";
+    var eventText = "";
     switch (randomEvent) {
         case 1:
             ball.speedX = Math.floor(ball.speedX / 2);
@@ -138,9 +138,11 @@ function handleRandomEvent() {
             eventText = 'Perplexity Pong';
         case 8:
             ball.color = 'black';
+            var blinkInterval = setInterval(() => {ball.color = 'white';}, 500);
             setTimeout(() => {
-                ball.color = 'white';
-            }, 3000);
+                clearInterval(blinkInterval)
+            }, 3000)
+            eventText = 'Blinking Ball';
     }
 
     console.log("Event text:", eventText);
