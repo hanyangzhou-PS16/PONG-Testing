@@ -55,6 +55,7 @@ button:hover {
 canvas {
     display: block;
     margin: 0 auto;
+    border: 28px solid #000000;
     background-color: #000000;
     box-sizing: border-box;
     z-index: 1;
