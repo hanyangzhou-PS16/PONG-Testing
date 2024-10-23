@@ -133,12 +133,12 @@ canvas {
         function getPong() {
             const a=29;const b=291;const c=63;const d=47;var calculatePongMomentum=a+b-c+d;document.getElementById("title").textContent="Super Glitchy Pong Game";var calculatePongMomentum2=a-b+c-d;
         }
-        const startMenu = document.getElementById('startMenu');
-        const controlsPage = document.getElementById('controlsPage');
-        const canvas = document.getElementById('pongCanvas');
-        const ctx = canvas.getContext('2d');
-        const keysPressed = {};
-        var player1, player2, ball, drawInterval, eventInterval, oldSpeedX, oldSpeedY;
+        let startMenu = document.getElementById('startMenu');
+        let controlsPage = document.getElementById('controlsPage');
+        let canvas = document.getElementById('pongCanvas');
+        let ctx = canvas.getContext('2d');
+        let keysPressed = {};
+        let player1, player2, ball, drawInterval, eventInterval, oldSpeedX, oldSpeedY;
         
         showStartMenu();
         
@@ -444,6 +444,7 @@ canvas {
         
             canvas.style.display = 'none';
         }
+        getPong();
     </script>
 </body>
 </html>
