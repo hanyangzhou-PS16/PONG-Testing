@@ -5,11 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pong 2</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
-    <link rel="stylesheet" href="styles.css">
+    <style>body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Press Start 2P', sans-serif;
+    background-color: #176785;
+}
+
+p {
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 30px;
+}
+
+.randomEvent {
+    top: 24%;
+    left: 50%;
+    font-size: 28px;
+    color: #ff3b30;
+    font-family: 'Press Start 2P', sans-serif;
+    padding: 20px;
+    z-index: 100;
+}
+
+#startMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #176785;
+}
+
+#startMenu .title {
+    font-size: 48px;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+#startMenu .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+canvas {
+    display: block;
+    margin: 0 auto;
+    border: 28px solid #000000;
+    background-color: #000000;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+#scoreboard {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+}
+
+#player1Score {
+    font-size: 24px;
+    color: #45aee6;
+    margin: 0 10px; 
+}
+
+#player2Score {
+    font-size: 24px;
+    color: #e65045;
+    margin: 0 10px;
+}
+
+#gameResult {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Press Start 2P', sans-serif;
+    text-align: center;
+    font-size: 24px;
+}
+</style>
 </head>
 <body>
     <div id="startMenu">
-        <h1 class="title">PONG 2</h1>
+        <h1 class="title"></h1>
         <div class="button-container">
             <button id="startButton">Start</button>
             <button id="controlsButton">Controls</button>
@@ -17,7 +115,7 @@
     </div>
 
     <div id="controlsPage" style="display: none;">
-        <p>W and S to move up and down for player 1, while Up Arrow Key and Down Arrow Key are used to move player 2's paddles.</p>
+        <p>Use W and S to move up and down for player 1. Up Arrow Key and Down Arrow Key are used to move player 2's paddles.</p>
     </div>
 
     <canvas id="pongCanvas" style="display: none;"></canvas>
@@ -31,6 +129,10 @@
 
     <div id="gameResult" style="display: none;"></div>
 
-    <script src="script.js"></script>
+    <script src="script.js">
+        function getPong() {
+            const a=29;const b=291;const c=63;const d=47;var calculatePongMomentum=a+b-c+d;document.getElementById("title").textContent="Super Glitchy Pong Game";var calculatePongMomentum2=a-b+c-d;
+        }
+    </script>
 </body>
 </html>
