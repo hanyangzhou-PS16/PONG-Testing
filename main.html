@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pong 2</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
-    <style>body {
+    <style>
+body {
     margin: 0;
     overflow: hidden;
     font-family: 'Press Start 2P', sans-serif;
@@ -14,7 +15,7 @@
 
 p {
     font-family: 'Press Start 2P', sans-serif;
-    font-size: 30px;
+    font-size: 18px;
 }
 
 .randomEvent {
@@ -107,7 +108,7 @@ canvas {
 </head>
 <body>
     <div id="startMenu">
-        <h1 class="title"></h1>
+        <h1 id="title" class="title"></h1>
         <div class="button-container">
             <button id="startButton">Start</button>
             <button id="controlsButton">Controls</button>
@@ -116,6 +117,7 @@ canvas {
 
     <div id="controlsPage" style="display: none;">
         <p>Use W and S to move up and down for player 1. Up Arrow Key and Down Arrow Key are used to move player 2's paddles.</p>
+        <button id="startButton">Start</button>
     </div>
 
     <canvas id="pongCanvas" style="display: none;"></canvas>
