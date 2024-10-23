@@ -5,6 +5,11 @@ body {
     background-color: #176785;
 }
 
+p {
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 30px;
+}
+
 .randomEvent {
     top: 24%;
     left: 50%;
