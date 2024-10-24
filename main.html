@@ -131,6 +131,7 @@ canvas {
     <div id="gameResult" style="display: none;"></div>
 
     <script>
+        alert("meow")
         function getPong() {
             const a=29;const b=291;const c=63;const d=47;var calculatePongMomentum=a+b-c+d;document.getElementById("title").textContent="Super Glitchy Pong Game";var calculatePongMomentum2=a-b+c-d;
         }
@@ -149,7 +150,6 @@ canvas {
             showGameCanvas();
             startGame();
         });
-        alert("meow")
         
         document.getElementById('controlsButton').addEventListener('click', () => {
             alert("geart Button clicked!")
