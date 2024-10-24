@@ -9,12 +9,10 @@
 body {
     margin: 0;
     overflow: hidden;
-    font-family: 'Press Start 2P', sans-serif;
     background-color: #176785;
 }
 
 p {
-    font-family: 'Press Start 2P', sans-serif;
     font-size: 18px;
 }
 
@@ -23,7 +21,6 @@ p {
     left: 50%;
     font-size: 28px;
     color: #ff3b30;
-    font-family: 'Press Start 2P', sans-serif;
     padding: 20px;
     z-index: 100;
 }
@@ -86,7 +83,7 @@ canvas {
 #player1Score {
     font-size: 24px;
     color: #45aee6;
-    margin: 0 10px; 
+    margin: 0 10px;
 }
 
 #player2Score {
@@ -100,7 +97,6 @@ canvas {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: 'Press Start 2P', sans-serif;
     text-align: center;
     font-size: 24px;
 }
@@ -117,6 +113,7 @@ canvas {
 
     <div id="controlsPage" style="display: none;">
         <p>Use W and S to move up and down for player 1. Up Arrow Key and Down Arrow Key are used to move player 2's paddles.</p>
+        <button id="startButton">Start</button>
     </div>
 
     <canvas id="pongCanvas" style="display: none;"></canvas>
@@ -131,7 +128,6 @@ canvas {
     <div id="gameResult" style="display: none;"></div>
 
     <script>
-        alert("meow")
         function getPong() {
             const a=29;const b=291;const c=63;const d=47;var calculatePongMomentum=a+b-c+d;document.getElementById("title").textContent="Super Glitchy Pong Game";var calculatePongMomentum2=a-b+c-d;
         }
@@ -141,45 +137,43 @@ canvas {
         let ctx = canvas.getContext('2d');
         let keysPressed = {};
         let player1, player2, ball, drawInterval, eventInterval, oldSpeedX, oldSpeedY;
-        
+       
         showStartMenu();
-        
+       
         document.getElementById('startButton').addEventListener('click', () => {
-            alert("Start Button clicked!")
             hideStartMenu();
             showGameCanvas();
             startGame();
         });
-        
+       
         document.getElementById('controlsButton').addEventListener('click', () => {
-            alert("geart Button clicked!")
             hideStartMenu();
             showControlsPage();
         });
-        
+       
         function showStartMenu() {
             startMenu.style.display = 'flex';
             controlsPage.style.display = 'none';
             canvas.style.display = 'none';
         }
-        
+       
         function hideStartMenu() {
             startMenu.style.display = 'none';
         }
-        
+       
         function showControlsPage() {
             controlsPage.style.display = 'block';
         }
-        
+       
         function showGameCanvas() {
             canvas.style.display = 'block';
         }
-        
+       
         function resizeCanvas() {
             canvas.width = window.innerWidth - 28;
             canvas.height = window.innerHeight - 28;
         }
-        
+       
         function increaseBallSpeed() {
             if (Math.abs(ball.speedX) < ball.maxSpeed) {
                 ball.speedX += ball.speedIncrement * Math.sign(ball.speedX);
@@ -188,28 +182,28 @@ canvas {
                 ball.speedY += ball.speedIncrement * Math.sign(ball.speedY);
             }
         }
-        
+       
         function resetBall() {
             ball.x = canvas.width / 2;
             ball.y = canvas.height / 2;
             ball.speedX = 5;
             ball.speedY = 5;
         }
-        
+       
         function keyDownHandler(e) {
             keysPressed[e.key] = true;
         }
-        
+       
         function keyUpHandler(e) {
             keysPressed[e.key] = false;
         }
-        
+       
         function drawPaddle(x, y, color, height) {
             const paddleWidth = 25;
             ctx.fillStyle = color;
             ctx.fillRect(x, y, paddleWidth, height);
         }
-        
+       
         function handleRandomEvent() {
             const randomEvent = Math.floor(Math.random() * 8) + 1;
             var eventText = "";
@@ -217,14 +211,14 @@ canvas {
                 case 1:
                     ball.speedX = Math.floor(ball.speedX / 2);
                     ball.speedY = Math.floor(ball.speedY / 2);
-                    eventText = 'Ball goes... slow?';
+                    eventText = 'Calming Pace';
                     break;
                 case 2:
                     ball.speedX *= 2;
                     ball.speedY *= 2;
                     ball.speedX = Math.min(ball.speedX, ball.maxSpeed);
                     ball.speedY = Math.min(ball.speedY, ball.maxSpeed);
-                    eventText = 'Ball goes wee!';
+                    eventText = 'Raging Pace';
                     break;
                 case 3:
                     player1.height += 80;
@@ -232,8 +226,8 @@ canvas {
                     setTimeout(() => {
                         player1.height -= 80;
                         player2.height -= 80;
-                    }, 5000);
-                    eventText = 'Ooooh! Big Paddles!';
+                    }, 3000);
+                    eventText = 'Stretched Paddles';
                     break;
                 case 4:
                     player1.height -= 80;
@@ -241,131 +235,82 @@ canvas {
                     setTimeout(() => {
                         player1.height += 80;
                         player2.height += 80;
-                    }, 5000);
-                    eventText = 'Tiny Paddles :(';
+                    }, 3000);
+                    eventText = 'Compressed Paddles';
                     break;
                 case 5:
                     ball.color = '#00FFFF';
-                    let oldSpeedX = ball.speedX;
-                    let oldSpeedY = ball.speedY;
+                    oldSpeedX = ball.speedX;
+                    oldSpeedY = ball.speedY;
                     ball.speedX = 0;
                     ball.speedY = 0;
                     setTimeout(() => {
                         ball.color = 'white';
                         ball.speedX = oldSpeedX;
                         ball.speedY = oldSpeedY;
-                    }, 5000);
-                    eventText = 'Your balls but frozen!';
+                    }, 3000);
+                    eventText = 'Frosted Ball';
                     break;
                 case 6:
                     ball.speedX = -ball.speedX;
                     ball.speedY = -ball.speedY;
-                    eventText = 'Back to you!';
+                    eventText = 'Reversed Route';
                     break;
                 case 7:
-                    oldX = ball.x;
-                    oldY = ball.y;
-                    setTimeout(() => {
-                        ball.x = oldX;
-                        ball.y = oldY;
-                    }, 5000)
-                    eventText = 'Teleportation?';
-                    break;
+                    oldSpeedX = ball.speedX;
+                    oldSpeedY = ball.speedY;
+                    ball.speedX = oldSpeedY;
+                    ball.speedY = oldSpeedX;
+                    eventText = 'Perplexity Pong';
                 case 8:
-                    let oldSpeedX = ball.speedX;
-                    let oldSpeedY = ball.speedY;
-                    ball.speedX *= 2;
-                    ball.speedY *= 2;
-                    ball.speedX = Math.min(ball.speedX, ball.maxSpeed);
-                    ball.speedY = Math.min(ball.speedY, ball.maxSpeed);
-                    setTimeout(() => {
-                        ball.speedX = oldSpeedX;
-                        ball.speedY = oldSpeedY;
-                    }, 5000)
-                    eventText = 'Jumpscare!';
-                    break;
-                case 9:
                     ball.color = 'black';
-                    let blinkInterval = setInterval(() => {
+                    var blinkInterval = setInterval(() => {
                         if (ball.color == 'white') {
                             ball.color = 'black';
                         } else if (ball.color == 'black') {
                             ball.color = 'white';
                         }
-                    }, 1000);
+                    }, 300);
                     setTimeout(() => {
                         clearInterval(blinkInterval);
                         ball.color = 'white';
-                    }, 5000)
-                    eventText = 'Close your eyes... and open them!';
-                    break;
-                case 10:
-                    player1.height += 160;
-                    player2.height += 160;
-                    setTimeout(() => {
-                        player1.height -= 160;
-                        player2.height -= 160;
-                    }, 5000);
-                    eventText = 'Ooooh! Gigantic Paddles!';
-                    break;
-                case 11:
-                    let oldPlayer1Color = player1.color;
-                    let oldPlayer2Color = player2.color;
-
-                    player1.color = 'black';
-                    player2.color = 'black';
-
-                    let blinkInterval = setInterval(() => {
-                        if (player1.color == 'white') {
-                            player1.color = 'black';
-                            player2.color = 'black';
-                        } else if (player1.color == 'black') {
-                            player1.color = oldPlayer1Color;
-                            player2.color = oldPlayer2Color;
-                        }
-                    }, 1000);
-                    setTimeout(() => {
-                        clearInterval(blinkInterval);
-                        player1.color = oldPlayer1Color;
-                        player2.color = oldPlayer2Color;
-                    }, 5000)
-                    eventText = 'Where are your paddles?';
-                    break;
+                    }, 3000)
+                    eventText = 'Blinking Ball';
             }
-        
+       
             console.log("Event text:", eventText);
-        
+       
             const eventTextElement = document.getElementById('eventText');
             eventTextElement.textContent = eventText;
-        
+       
             eventTextElement.style.display = 'block';
-        
+       
             setTimeout(() => {
                 eventTextElement.style.display = 'none';
             }, 2000);
         }
-        
+       
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
+       
             ctx.beginPath();
             ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
             ctx.fillStyle = ball.color;
             ctx.fill();
             ctx.closePath();
-        
+       
             drawPaddle(player1.x, player1.y, player1.color, player1.height);
             drawPaddle(player2.x, player2.y, player2.color, player2.height);
-        
+       
             if (ball.speedX != 0 || ball.speedY != 0) {
                 ball.x += ball.speedX;
                 ball.y += ball.speedY;
             }
-        
+       
             if (ball.y + ball.radius >= canvas.height || ball.y - ball.radius <= 0) {
                 ball.speedY = -ball.speedY;
             }
-        
+       
             if (
                 ball.x - ball.radius < player1.x + 25 &&
                 ball.y > player1.y &&
@@ -374,7 +319,7 @@ canvas {
                 ball.speedX = -ball.speedX;
                 increaseBallSpeed();
             }
-        
+       
             if (
                 ball.x + ball.radius > player2.x &&
                 ball.y > player2.y &&
@@ -383,7 +328,7 @@ canvas {
                 ball.speedX = -ball.speedX;
                 increaseBallSpeed();
             }
-        
+       
             if (ball.x - ball.radius < 0) {
                 player2.score++;
                 const player2ScoreElement = document.getElementById('player2Score');
@@ -407,7 +352,7 @@ canvas {
                     resetBall();
                 }
             }
-        
+       
             if (keysPressed['w']) {
                 player1.y -= player1.speed;
                 player1.y = Math.max(0, player1.y);
@@ -425,18 +370,18 @@ canvas {
                 player2.y = Math.min(canvas.height - player2.height, player2.y);
             }
         }
-        
+       
         window.addEventListener('resize', () => {
             resizeCanvas();
             draw();
         });
-        
+       
         resizeCanvas();
-        
+       
         function startGame() {
             hideStartMenu();
             showGameCanvas();
-        
+       
             player1 = {
                 x: 120,
                 y: canvas.height / 2 - 185 / 2,
@@ -446,7 +391,7 @@ canvas {
                 color: '#45aee6',
                 score: 0
             };
-        
+       
             player2 = {
                 x: canvas.width - 120,
                 y: canvas.height / 2 - 185 / 2,
@@ -456,7 +401,7 @@ canvas {
                 color: '#e65045',
                 score: 0
             };
-        
+       
             ball = {
                 x: canvas.width / 2,
                 y: canvas.height / 2,
@@ -467,34 +412,34 @@ canvas {
                 speedIncrement: 0.5,
                 color: 'white'
             };
-        
+       
             document.addEventListener('keydown', keyDownHandler, false);
             document.addEventListener('keyup', keyUpHandler, false);
-        
+       
             draw();
-        
+       
             drawInterval = setInterval(draw, 1000 / 60);
             eventInterval = setInterval(handleRandomEvent, 5000);
         }
-        
+       
         function endGame(winner) {
             clearInterval(drawInterval);
             clearInterval(eventInterval);
-        
+       
             const winnerText = document.createElement('p');
             winnerText.textContent = `Player ${winner} won! Congrats! Do you want to play this game again?`;
-            
+           
             const playAgainButton = document.createElement('button');
             playAgainButton.textContent = 'Play Again';
             playAgainButton.addEventListener('click', () => {
                 location.reload();
             });
-        
+       
             const gameResultContainer = document.getElementById('gameResult');
             gameResultContainer.appendChild(winnerText);
             gameResultContainer.appendChild(playAgainButton);
             gameResultContainer.style.display = 'block';
-        
+       
             canvas.style.display = 'none';
         }
         getPong();
