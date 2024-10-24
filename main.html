@@ -9,12 +9,10 @@
 body {
     margin: 0;
     overflow: hidden;
-    font-family: 'Press Start 2P', sans-serif;
     background-color: #176785;
 }
 
 p {
-    font-family: 'Press Start 2P', sans-serif;
     font-size: 18px;
 }
 
@@ -23,7 +21,6 @@ p {
     left: 50%;
     font-size: 28px;
     color: #ff3b30;
-    font-family: 'Press Start 2P', sans-serif;
     padding: 20px;
     z-index: 100;
 }
@@ -86,7 +83,7 @@ canvas {
 #player1Score {
     font-size: 24px;
     color: #45aee6;
-    margin: 0 10px; 
+    margin: 0 10px;
 }
 
 #player2Score {
@@ -100,7 +97,6 @@ canvas {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: 'Press Start 2P', sans-serif;
     text-align: center;
     font-size: 24px;
 }
@@ -131,7 +127,8 @@ canvas {
 
     <div id="gameResult" style="display: none;"></div>
 
-    <script>function getPong() {
+    <script>
+        function getPong() {
             const a=29;const b=291;const c=63;const d=47;var calculatePongMomentum=a+b-c+d;document.getElementById("title").textContent="Super Glitchy Pong Game";var calculatePongMomentum2=a-b+c-d;
         }
         let startMenu = document.getElementById('startMenu');
