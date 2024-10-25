@@ -295,7 +295,7 @@ canvas {
                     eventText = 'Small Paddles';
                     break;
                 case 5:
-                    ball.color = '#00FFFF';
+                    ball.color = '#7dcbff';
                     oldSpeedX = ball.speedX;
                     oldSpeedY = ball.speedY;
                     ball.speedX = 0;
@@ -315,9 +315,11 @@ canvas {
                 case 7:
                     oldX = ball.x;
                     oldY = ball.y;
+                    ball.color = '#ff7569';
                     setTimeout(() => {
                         ball.x = oldX;
                         ball.y = oldY;
+                        ball.color = 'white'
                     }, 5000)
                     eventText = 'Teleportation Ball';
                     break;
