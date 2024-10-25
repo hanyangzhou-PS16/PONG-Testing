@@ -326,6 +326,24 @@ canvas {
                     }, 5000)
                     eventText = 'Blinking Paddles';
                     break;
+                case 12:
+                    oldUp1 = player1.up
+                    oldDown1 = player1.down
+                    oldUp2 = player2.up
+                    oldDown2 = player2.down
+                    player1.up = oldDown1
+                    player1.down = oldUp1
+                    player2.up = oldDown2
+                    player2.down = oldUp2
+                    
+                    setTimeout(() => {
+                        player1.up = oldUp1
+                        player1.down = oldDown1
+                        player2.up = oldUp2
+                        player2.down = oldDown2
+                    }, 5000)
+                    eventText = 'Reversed Controls'
+                    break;
             }
        
             const eventTextElement = document.getElementById('eventText');
@@ -335,7 +353,7 @@ canvas {
        
             setTimeout(() => {
                 eventTextElement.style.display = 'none';
-            }, 2000);
+            }, 1500);
         }
        
         function draw() {
@@ -401,19 +419,19 @@ canvas {
                 }
             }
        
-            if (keysPressed['w']) {
+            if (keysPressed[player1.up]) {
                 player1.y -= player1.speed;
                 player1.y = Math.max(0, player1.y);
             }
-            if (keysPressed['s']) {
+            if (keysPressed[player1.down]) {
                 player1.y += player1.speed;
                 player1.y = Math.min(canvas.height - player1.height, player1.y);
             }
-            if (keysPressed['ArrowUp']) {
+            if (keysPressed[player2.up]) {
                 player2.y -= player2.speed;
                 player2.y = Math.max(0, player2.y);
             }
-            if (keysPressed['ArrowDown']) {
+            if (keysPressed[player2.down]) {
                 player2.y += player2.speed;
                 player2.y = Math.min(canvas.height - player2.height, player2.y);
             }
@@ -437,6 +455,8 @@ canvas {
                 speed: 8,
                 height: 185,
                 color: '#45aee6',
+                up: 'w',
+                down: 's',
                 score: 0
             };
        
@@ -447,6 +467,8 @@ canvas {
                 speed: 8,
                 height: 185,
                 color: '#e65045',
+                up: 'ArrowUp',
+                down: 'ArrowDown',
                 score: 0
             };
        
@@ -457,7 +479,7 @@ canvas {
                 speedX: 5,
                 speedY: 5,
                 maxSpeed: 12,
-                speedIncrement: 0.5,
+                speedIncrement: 1,
                 color: 'white'
             };
        
