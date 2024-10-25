@@ -310,20 +310,22 @@ canvas {
                     player2.color = 'black';
 
                     var blinkIntervalPaddles = setInterval(() => {
-                        if (player1.color == oldPlayer1Color) {
-                            player1.color = 'black';
-                            player2.color = 'black';
-                        } else if (player1.color == 'black') {
+                        if (player1.color == 'black') {
                             player1.color = oldPlayer1Color;
                             player2.color = oldPlayer2Color;
+                        } else if (player1.color == oldPlayer1Color) {
+                            player1.color = 'black';
+                            player2.color = 'black';
                         }
                     }, 1000);
+                    
                     setTimeout(() => {
                         clearInterval(blinkIntervalPaddles);
                         player1.color = oldPlayer1Color;
                         player2.color = oldPlayer2Color;
                     }, 5000)
                     eventText = 'Blinking Paddles';
+                    break;
             }
        
             const eventTextElement = document.getElementById('eventText');
