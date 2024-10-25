@@ -1,4 +1,4 @@
-[<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -310,14 +310,14 @@ canvas {
                     player2.color = 'black';
 
                     var blinkIntervalPaddles = setInterval(() => {
-                        if (player1.color == 'white') {
+                        if (player1.color == 'oldPlayer1Color') {
                             player1.color = 'black';
                             player2.color = 'black';
                         } else if (player1.color == 'black') {
                             player1.color = oldPlayer1Color;
                             player2.color = oldPlayer2Color;
                         }
-                    }, 1000);
+                    }, 500);
                     setTimeout(() => {
                         clearInterval(blinkIntervalPaddles);
                         player1.color = oldPlayer1Color;
