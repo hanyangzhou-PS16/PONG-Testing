@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+[<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -280,7 +280,7 @@ canvas {
                     break;
                 case 9:
                     ball.color = 'black';
-                    blinkInterval = setInterval(() => {
+                    var blinkIntervalBall = setInterval(() => {
                         if (ball.color == 'white') {
                             ball.color = 'black';
                         } else if (ball.color == 'black') {
@@ -288,7 +288,7 @@ canvas {
                         }
                     }, 1000);
                     setTimeout(() => {
-                        clearInterval(blinkInterval);
+                        clearInterval(blinkIntervalBall);
                         ball.color = 'white';
                     }, 5000)
                     eventText = 'Blinking Ball';
@@ -309,7 +309,7 @@ canvas {
                     player1.color = 'black';
                     player2.color = 'black';
 
-                    let blinkInterval = setInterval(() => {
+                    var blinkIntervalPaddles = setInterval(() => {
                         if (player1.color == 'white') {
                             player1.color = 'black';
                             player2.color = 'black';
@@ -319,7 +319,7 @@ canvas {
                         }
                     }, 1000);
                     setTimeout(() => {
-                        clearInterval(blinkInterval);
+                        clearInterval(blinkIntervalPaddles);
                         player1.color = oldPlayer1Color;
                         player2.color = oldPlayer2Color;
                     }, 5000)
