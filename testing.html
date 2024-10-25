@@ -209,77 +209,126 @@ canvas {
         }
         
         function handleRandomEvent() {
-            const randomEvent = Math.floor(Math.random() * 8) + 1;
+            const randomEvent = Math.floor(Math.random() * 11) + 1;
             var eventText = "";
             switch (randomEvent) {
                 case 1:
-                    ball.speedX = Math.floor(ball.speedX / 2);
-                    ball.speedY = Math.floor(ball.speedY / 2);
-                    eventText = 'Calming Pace';
-                    break;
-                case 2:
-                    ball.speedX *= 2;
-                    ball.speedY *= 2;
-                    ball.speedX = Math.min(ball.speedX, ball.maxSpeed);
-                    ball.speedY = Math.min(ball.speedY, ball.maxSpeed);
-                    eventText = 'Raging Pace';
-                    break;
-                case 3:
-                    player1.height += 80;
-                    player2.height += 80;
-                    setTimeout(() => {
-                        player1.height -= 80;
-                        player2.height -= 80;
-                    }, 3000);
-                    eventText = 'Stretched Paddles';
-                    break;
-                case 4:
-                    player1.height -= 80;
-                    player2.height -= 80;
-                    setTimeout(() => {
-                        player1.height += 80;
-                        player2.height += 80;
-                    }, 3000);
-                    eventText = 'Compressed Paddles';
-                    break;
-                case 5:
-                    ball.color = '#00FFFF';
-                    oldSpeedX = ball.speedX;
-                    oldSpeedY = ball.speedY;
-                    ball.speedX = 0;
-                    ball.speedY = 0;
-                    setTimeout(() => {
-                        ball.color = 'white';
-                        ball.speedX = oldSpeedX;
-                        ball.speedY = oldSpeedY;
-                    }, 3000);
-                    eventText = 'Frosted Ball';
-                    break;
-                case 6:
-                    ball.speedX = -ball.speedX;
-                    ball.speedY = -ball.speedY;
-                    eventText = 'Reversed Route';
-                    break;
-                case 7:
-                    oldSpeedX = ball.speedX;
-                    oldSpeedY = ball.speedY;
-                    ball.speedX = oldSpeedY;
-                    ball.speedY = oldSpeedX;
-                    eventText = 'Perplexity Pong';
-                case 8:
-                    ball.color = 'black';
-                    var blinkInterval = setInterval(() => {
-                        if (ball.color == 'white') {
-                            ball.color = 'black';
-                        } else if (ball.color == 'black') {
-                            ball.color = 'white';
-                        }
-                    }, 300);
-                    setTimeout(() => {
-                        clearInterval(blinkInterval);
-                        ball.color = 'white';
-                    }, 3000)
-                    eventText = 'Blinking Ball';
+                    ball.speedX = Math.floor(ball.speedX / 2);
+                    ball.speedY = Math.floor(ball.speedY / 2);
+                    eventText = 'Ball goes... slow?';
+                    break;
+                case 2:
+                    ball.speedX *= 2;
+                    ball.speedY *= 2;
+                    ball.speedX = Math.min(ball.speedX, ball.maxSpeed);
+                    ball.speedY = Math.min(ball.speedY, ball.maxSpeed);
+                    eventText = 'Ball goes wee!';
+                    break;
+                case 3:
+                    player1.height += 80;
+                    player2.height += 80;
+                    setTimeout(() => {
+                        player1.height -= 80;
+                        player2.height -= 80;
+                    }, 5000);
+                    eventText = 'Ooooh! Big Paddles!';
+                    break;
+                case 4:
+                    player1.height -= 80;
+                    player2.height -= 80;
+                    setTimeout(() => {
+                        player1.height += 80;
+                        player2.height += 80;
+                    }, 5000);
+                    eventText = 'Tiny Paddles :(';
+                    break;
+                case 5:
+                    ball.color = '#00FFFF';
+                    let oldSpeedX = ball.speedX;
+                    let oldSpeedY = ball.speedY;
+                    ball.speedX = 0;
+                    ball.speedY = 0;
+                    setTimeout(() => {
+                        ball.color = 'white';
+                        ball.speedX = oldSpeedX;
+                        ball.speedY = oldSpeedY;
+                    }, 5000);
+                    eventText = 'Your balls but frozen!';
+                    break;
+                case 6:
+                    ball.speedX = -ball.speedX;
+                    ball.speedY = -ball.speedY;
+                    eventText = 'Back to you!';
+                    break;
+                case 7:
+                    oldX = ball.x;
+                    oldY = ball.y;
+                    setTimeout(() => {
+                        ball.x = oldX;
+                        ball.y = oldY;
+                    }, 5000)
+                    eventText = 'Teleportation?';
+                    break;
+                case 8:
+                    let oldSpeedX = ball.speedX;
+                    let oldSpeedY = ball.speedY;
+                    ball.speedX *= 2;
+                    ball.speedY *= 2;
+                    ball.speedX = Math.min(ball.speedX, ball.maxSpeed);
+                    ball.speedY = Math.min(ball.speedY, ball.maxSpeed);
+                    setTimeout(() => {
+                        ball.speedX = oldSpeedX;
+                        ball.speedY = oldSpeedY;
+                    }, 5000)
+                    eventText = 'Jumpscare!';
+                    break;
+                case 9:
+                    ball.color = 'black';
+                    let blinkInterval = setInterval(() => {
+                        if (ball.color == 'white') {
+                            ball.color = 'black';
+                        } else if (ball.color == 'black') {
+                            ball.color = 'white';
+                        }
+                    }, 1000);
+                    setTimeout(() => {
+                        clearInterval(blinkInterval);
+                        ball.color = 'white';
+                    }, 5000)
+                    eventText = 'Close your eyes... and open them!';
+                    break;
+                case 10:
+                    player1.height += 160;
+                    player2.height += 160;
+                    setTimeout(() => {
+                        player1.height -= 160;
+                        player2.height -= 160;
+                    }, 5000);
+                    eventText = 'Ooooh! Gigantic Paddles!';
+                    break;
+                case 11:
+                    let oldPlayer1Color = player1.color;
+                    let oldPlayer2Color = player2.color;
+
+                    player1.color = 'black';
+                    player2.color = 'black';
+
+                    let blinkInterval = setInterval(() => {
+                        if (player1.color == 'white') {
+                            player1.color = 'black';
+                            player2.color = 'black';
+                        } else if (player1.color == 'black') {
+                            player1.color = oldPlayer1Color;
+                            player2.color = oldPlayer2Color;
+                        }
+                    }, 1000);
+                    setTimeout(() => {
+                        clearInterval(blinkInterval);
+                        player1.color = oldPlayer1Color;
+                        player2.color = oldPlayer2Color;
+                    }, 5000)
+                    eventText = 'Where are your paddles?';
+                    break;
             }
         
             console.log("Event text:", eventText);
@@ -423,7 +472,7 @@ canvas {
             draw();
         
             drawInterval = setInterval(draw, 1000 / 60);
-            eventInterval = setInterval(handleRandomEvent, 5000);
+            eventInterval = setInterval(handleRandomEvent, 10000);
         }
         
         function endGame(winner) {
