@@ -112,8 +112,17 @@ canvas {
     </div>
 
     <div id="controlsPage" style="display: none;">
-        <p>Use W and S to move up and down for player 1. Up Arrow Key and Down Arrow Key are used to move player 2's paddles.</p>
-        <button id="startButton">Start</button>
+        <h1>Controls</h1>
+        <p>Player 1: W + S, Player 2: ArrowUp + Arrow Down</p>
+        <button id="backButton">Back</button>
+    </div>
+
+    <div id="gamemodeMenu" style="display: none;">
+        <h1>Choose a gamemode</h1>
+        <div class="button-container">
+            <button id="singleButton">Singleplayer</button>
+            <button id="multiButton">Multiplayer</button>
+        </div>
     </div>
 
     <canvas id="pongCanvas" style="display: none;"></canvas>
@@ -133,27 +142,58 @@ canvas {
         }
         let startMenu = document.getElementById('startMenu');
         let controlsPage = document.getElementById('controlsPage');
+        let gamemodeMenu = document.getElementById('gamemodeMenu');
         let canvas = document.getElementById('pongCanvas');
         let ctx = canvas.getContext('2d');
         let keysPressed = {};
         let player1, player2, ball, drawInterval, eventInterval, oldSpeedX, oldSpeedY;
+        let AI = false
        
         showStartMenu();
        
         document.getElementById('startButton').addEventListener('click', () => {
             hideStartMenu();
-            showGameCanvas();
-            startGame();
+            showGamemodeMenu();
         });
        
         document.getElementById('controlsButton').addEventListener('click', () => {
             hideStartMenu();
             showControlsPage();
         });
+
+        document.getElementById('backButton').addEventListener('click', () => {
+            showStartMenu();
+            hideControlsPage();
+        });
+
+        document.getElementById('singleButton').addEventListener('click', () => {
+            hideGamemodeMenu();
+            startGame();
+            AI = true;
+        });
+
+        document.getElementById('multiButton').addEventListener('click', () => {
+            hideGamemodeMenu();
+            startGame();
+        });
+
+        function moveAI() {
+            if (AI == true) {
+                const aiPaddleCenter = player2.y + player2.height / 2;
+                if (ball.y < aiPaddleCenter - 10) {
+                    player2.y -= player2.speed;
+                } else if (ball.y > aiPaddleCenter + 10) {
+                    player2.y += player2.speed;
+                }
+                
+                player2.y = Math.max(0, Math.min(canvas.height - player2.height, player2.y));
+            }
+        }
        
         function showStartMenu() {
             startMenu.style.display = 'flex';
             controlsPage.style.display = 'none';
+            gamemodeMenu.style.display = 'none';
             canvas.style.display = 'none';
         }
        
@@ -164,9 +204,25 @@ canvas {
         function showControlsPage() {
             controlsPage.style.display = 'block';
         }
+
+        function hideControlsPage() {
+            controlsPage.style.display = 'none';
+        }
        
         function showGameCanvas() {
             canvas.style.display = 'block';
+        }
+
+        function hideGameCanvas() {
+            canvas.style.display = 'none';
+        }
+
+        function showGamemodeMenu() {
+            gamemodeMenu.style.display = 'block';
+        }
+
+        function hideGamemodeMenu() {
+            gamemodeMenu.style.display = 'block';
         }
        
         function resizeCanvas() {
@@ -427,13 +483,17 @@ canvas {
                 player1.y += player1.speed;
                 player1.y = Math.min(canvas.height - player1.height, player1.y);
             }
-            if (keysPressed[player2.up]) {
-                player2.y -= player2.speed;
-                player2.y = Math.max(0, player2.y);
-            }
-            if (keysPressed[player2.down]) {
-                player2.y += player2.speed;
-                player2.y = Math.min(canvas.height - player2.height, player2.y);
+            if (AI == false) {
+                if (keysPressed[player2.up]) {
+                    player2.y -= player2.speed;
+                    player2.y = Math.max(0, player2.y);
+                }
+                if (keysPressed[player2.down]) {
+                    player2.y += player2.speed;
+                    player2.y = Math.min(canvas.height - player2.height, player2.y);
+                }
+            } else {
+                moveAI()
             }
         }
        
@@ -444,8 +504,10 @@ canvas {
        
         resizeCanvas();
        
-        function startGame() {
+        function startGame(mode) {
             hideStartMenu();
+            hideGamemodeMenu();
+            hideControlsPage();
             showGameCanvas();
        
             player1 = {
