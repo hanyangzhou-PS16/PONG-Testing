@@ -157,6 +157,10 @@ canvas {
         let canvas = document.getElementById('pongCanvas');
         let ctx = canvas.getContext('2d');
         let keysPressed = {};
+        let AIConfiguration = {
+                speed: 0,
+                reactionTime: 1000
+        };
         let player1, player2, ball, drawInterval, eventInterval, oldSpeedX, oldSpeedY;
         let AIMovementDelayed = false;
         let AI = false;
@@ -629,11 +633,6 @@ canvas {
                 maxSpeed: 10,
                 speedIncrement: 1,
                 color: 'white'
-            };
-
-            AIConfiguration = {
-                speed: 0,
-                reactionTime: 1000
             };
        
             document.addEventListener('keydown', keyDownHandler, false);
