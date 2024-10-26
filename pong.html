@@ -159,7 +159,7 @@ canvas {
         let keysPressed = {};
         let AIConfiguration = {
                 speed: 0,
-                reactionTime: 1000
+                reactionTime: 2000
         };
         let player1, player2, ball, drawInterval, eventInterval, oldSpeedX, oldSpeedY;
         let AIMovementDelayed = false;
@@ -196,7 +196,7 @@ canvas {
         document.getElementById('easyButton').addEventListener('click', () => {
             if (AI == true) {
                 AIConfiguration.speed = 8;
-                AIConfiguration.reactionTime = 1500;
+                AIConfiguration.reactionTime = 2000;
                 startGame();
             }
         });
@@ -228,10 +228,14 @@ canvas {
         function moveAI() {
             if (AI == true) {
                 const aiPaddleCenter = player2.y + player2.height / 2;
-                if (ball.y < aiPaddleCenter - AIConfiguration.speed) {
-                    player2.y -= AIConfiguration.speed;
-                } else if (ball.y > aiPaddleCenter + AIConfiguration.speed) {
-                    player2.y += AIConfiguration.speed;
+                if (AIMovementDelayed == false) {
+                    if (ball.y < aiPaddleCenter - AIConfiguration.speed) {
+                        player2.y -= AIConfiguration.speed;
+                    } else if (ball.y > aiPaddleCenter + AIConfiguration.speed) {
+                        player2.y += AIConfiguration.speed;
+                    }
+                } else {
+                    player2.y += Math.random() < 0.5 ?-Math.abs(AIConfiguration.speed):Math.abs(AIConfiguration.speed);
                 }
                 
                 player2.y = Math.max(0, Math.min(canvas.height - player2.height, player2.y));
@@ -581,7 +585,7 @@ canvas {
                     player2.y += player2.speed;
                     player2.y = Math.min(canvas.height - player2.height, player2.y);
                 }
-            } else if (AIMovementDelayed == false) {
+            } else {
                 moveAI();
             }
         }
