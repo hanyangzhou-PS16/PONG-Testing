@@ -527,10 +527,10 @@ canvas {
                 increaseBallSpeed();
 
                 if (AI == true) {
-                    if (aiMovementDelayed == false) {
-                        aiMovementDelayed = true;
+                    if (AIMovementDelayed == false) {
+                        AIMovementDelayed = true;
                         setTimeout(() => {
-                            aiMovementDelayed = false;
+                            AIMovementDelayed = false;
                         }, AIConfiguration.reactionTime);
                     }
                 }
@@ -578,7 +578,7 @@ canvas {
                     player2.y = Math.min(canvas.height - player2.height, player2.y);
                 }
             } else {
-                if (aiMovementDelayed == false) {
+                if (AIMovementDelayed == false) {
                     moveAI();
                 }
             }
