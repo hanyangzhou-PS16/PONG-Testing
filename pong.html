@@ -125,6 +125,16 @@ canvas {
         </div>
     </div>
 
+    <div id="difficultyMenu" style="display: none;">
+        <h1>Choose a difficulty</h1>
+        <div class="button-container">
+            <button id="easyButton">Easy</button>
+            <button id="mediumButton">Medium</button>
+            <button id="hardButton">Hard</button>
+            <button id="impossibleButton">Impossible</button>
+        </div>
+    </div>
+
     <canvas id="pongCanvas" style="display: none;"></canvas>
     <div id="eventText" class="randomEvent" style="position: absolute; transform: translate(-50%, -50%); display: none;"></div>
 
@@ -143,11 +153,15 @@ canvas {
         let startMenu = document.getElementById('startMenu');
         let controlsPage = document.getElementById('controlsPage');
         let gamemodeMenu = document.getElementById('gamemodeMenu');
+        let difficultyMenu = document.getElementById('difficultyMenu');
         let canvas = document.getElementById('pongCanvas');
         let ctx = canvas.getContext('2d');
         let keysPressed = {};
         let player1, player2, ball, drawInterval, eventInterval, oldSpeedX, oldSpeedY;
-        let AI = false
+        AIConfiguration = {
+            speed: 8
+        }
+        let AI = false;
        
         showStartMenu();
        
@@ -168,7 +182,7 @@ canvas {
 
         document.getElementById('singleButton').addEventListener('click', () => {
             hideGamemodeMenu();
-            startGame();
+            showDifficultyMenu();
             AI = true;
         });
 
@@ -177,13 +191,41 @@ canvas {
             startGame();
         });
 
+        document.getElementById('easyButton').addEventListener('click', () => {
+            if (AI == true) {
+                AIConfiguration.speed = 8;
+                startGame();
+            }
+        });
+        
+        document.getElementById('mediumButton').addEventListener('click', () => {
+            if (AI == true) {
+                AIConfiguration.speed = 12;
+                startGame();
+            }
+        });
+        
+        document.getElementById('hardButton').addEventListener('click', () => {
+            if (AI == true) {
+                AIConfiguration.speed = 16;
+                startGame();
+            }
+        });
+
+        document.getElementById('impossibleButton').addEventListener('click', () => {
+            if (AI == true) {
+                AIConfiguration.speed = 20;
+                startGame();
+            }
+        });
+
         function moveAI() {
             if (AI == true) {
                 const aiPaddleCenter = player2.y + player2.height / 2;
-                if (ball.y < aiPaddleCenter - 10) {
-                    player2.y -= player2.speed;
-                } else if (ball.y > aiPaddleCenter + 10) {
-                    player2.y += player2.speed;
+                if (ball.y < aiPaddleCenter - AIConfiguration.speed) {
+                    player2.y -= AIConfiguration.speed;
+                } else if (ball.y > aiPaddleCenter + AIConfiguration.speed) {
+                    player2.y += AIConfiguration.speed;
                 }
                 
                 player2.y = Math.max(0, Math.min(canvas.height - player2.height, player2.y));
@@ -223,6 +265,14 @@ canvas {
 
         function hideGamemodeMenu() {
             gamemodeMenu.style.display = 'none';
+        }
+
+        function showDifficultyMenu() {
+            difficultyMenu.style.display = 'block';
+        }
+
+        function hideDifficultyMenu() {
+            difficultyMenu.style.display = 'none';
         }
        
         function resizeCanvas() {
