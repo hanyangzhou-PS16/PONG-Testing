@@ -261,7 +261,7 @@ canvas {
         }
        
         function handleRandomEvent() {
-            const randomEvent = Math.floor(Math.random() * 12) + 1;
+            const randomEvent = Math.floor(Math.random() * 14) + 1;
             var eventText = "";
             switch (randomEvent) {
                 case 1:
@@ -402,6 +402,28 @@ canvas {
                     }, 5000)
                     eventText = 'Reversed Controls'
                     break;
+                case 13:
+                    oldSpeed1 = player1.speed
+                    oldSpeed2 = player2.speed
+                    player1.speed *= 2
+                    player2.speed *= 2
+                    setTimeout(() => {
+                        player1.speed = oldSpeed1
+                        player2.speed = oldSpeed2
+                    }, 5000) 
+                    eventText = 'Fast Paddles'
+                    break;
+                case 14:
+                    oldSpeed1 = player1.speed
+                    oldSpeed2 = player2.speed
+                    player1.speed /= 2
+                    player2.speed /= 2
+                    setTimeout(() => {
+                        player1.speed = oldSpeed1
+                        player2.speed = oldSpeed2
+                    }, 5000) 
+                    eventText = 'Slow Paddles'
+                    break;
             }
        
             const eventTextElement = document.getElementById('eventText');
@@ -516,7 +538,7 @@ canvas {
                 x: 120,
                 y: canvas.height / 2 - 185 / 2,
                 dy: 0,
-                speed: 12,
+                speed: 8,
                 height: 185,
                 color: '#45aee6',
                 up: 'w',
@@ -528,7 +550,7 @@ canvas {
                 x: canvas.width - 120,
                 y: canvas.height / 2 - 185 / 2,
                 dy: 0,
-                speed: 12,
+                speed: 8,
                 height: 185,
                 color: '#e65045',
                 up: 'ArrowUp',
@@ -542,7 +564,7 @@ canvas {
                 radius: 15,
                 speedX: 5,
                 speedY: 5,
-                maxSpeed: 12,
+                maxSpeed: 10,
                 speedIncrement: 1,
                 color: 'white'
             };
