@@ -158,9 +158,7 @@ canvas {
         let ctx = canvas.getContext('2d');
         let keysPressed = {};
         let player1, player2, ball, drawInterval, eventInterval, oldSpeedX, oldSpeedY;
-        AIConfiguration = {
-            speed: 8
-        }
+        let AIMovementDelayed = false;
         let AI = false;
        
         showStartMenu();
@@ -194,27 +192,31 @@ canvas {
         document.getElementById('easyButton').addEventListener('click', () => {
             if (AI == true) {
                 AIConfiguration.speed = 8;
+                AIConfiguration.reactionTime = 1000;
                 startGame();
             }
         });
         
         document.getElementById('mediumButton').addEventListener('click', () => {
             if (AI == true) {
-                AIConfiguration.speed = 12;
+                AIConfiguration.speed = 10;
+                AIConfiguration.reactionTime = 500;
                 startGame();
             }
         });
         
         document.getElementById('hardButton').addEventListener('click', () => {
             if (AI == true) {
-                AIConfiguration.speed = 16;
+                AIConfiguration.speed = 12;
+                AIConfiguration.reactionTime = 300;
                 startGame();
             }
         });
 
         document.getElementById('impossibleButton').addEventListener('click', () => {
             if (AI == true) {
-                AIConfiguration.speed = 20;
+                AIConfiguration.speed = 14;
+                AIConfiguration.reactionTime = 150;
                 startGame();
             }
         });
@@ -523,6 +525,15 @@ canvas {
             ) {
                 ball.speedX = -ball.speedX;
                 increaseBallSpeed();
+
+                if (AI == true) {
+                    if (!aiMovementDelayed) {
+                        aiMovementDelayed = true;
+                        setTimeout(() => {
+                            aiMovementDelayed = false; // Reset the delay flag
+                        }, AIConfiguration.reactionTime);
+                    }
+                }
             }
        
             if (ball.x - ball.radius < 0) {
@@ -567,7 +578,9 @@ canvas {
                     player2.y = Math.min(canvas.height - player2.height, player2.y);
                 }
             } else {
-                moveAI()
+                if (!aiMovementDelayed) {
+                    moveAI();
+                }
             }
         }
        
@@ -619,6 +632,11 @@ canvas {
                 speedIncrement: 1,
                 color: 'white'
             };
+
+            AIConfiguration = {
+                speed: 0,
+                reactionTime: 0
+            }
        
             document.addEventListener('keydown', keyDownHandler, false);
             document.addEventListener('keyup', keyUpHandler, false);
