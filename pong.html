@@ -510,6 +510,46 @@ canvas {
                 ball.x += ball.speedX;
                 ball.y += ball.speedY;
             }
+
+            if (
+                ball.x - ball.radius < player1.x + 25 &&
+                ball.y > player1.y &&
+                ball.y < player1.y + player1.height
+            ) {
+                if (ball.y + ball.radius < player1.y || ball.y - ball.radius > player1.y + player1.height) {
+                    ball.speedX = -ball.speedX;
+                    increaseBallSpeed();
+
+                    if (AI == true) {
+                        if (AIMovementDelayed == false) {
+                            AIMovementDelayed = true;
+                            setTimeout(() => {
+                                AIMovementDelayed = false;
+                            }, AIConfiguration.reactionTime);
+                        }
+                    }
+                }
+            }
+            
+            if (
+                ball.x + ball.radius > player2.x &&
+                ball.y > player2.y &&
+                ball.y < player2.y + player2.height
+            ) {
+                if (ball.y + ball.radius < player2.y || ball.y - ball.radius > player2.y + player2.height) {
+                    ball.speedX = -ball.speedX;
+                    increaseBallSpeed();
+
+                    if (AI == true) {
+                        if (AIMovementDelayed == false) {
+                            AIMovementDelayed = true;
+                            setTimeout(() => {
+                                AIMovementDelayed = false;
+                            }, AIConfiguration.reactionTime);
+                        }
+                    }
+                }
+            }
        
             if (ball.y + ball.radius >= canvas.height || ball.y - ball.radius <= 0) {
                 ball.speedY = -ball.speedY;
@@ -523,14 +563,7 @@ canvas {
                 ball.speedX = -ball.speedX;
                 increaseBallSpeed();
 
-                if (AI == true) {
-                    if (AIMovementDelayed == false) {
-                        AIMovementDelayed = true;
-                        setTimeout(() => {
-                            AIMovementDelayed = false;
-                        }, AIConfiguration.reactionTime);
-                    }
-                }
+                
             }
        
             if (
