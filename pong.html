@@ -230,6 +230,7 @@ canvas {
             if (AI == true) {
                 let aiPaddleCenter = player2.y + player2.height / 2;
                 if (AIMovementDelayed) {
+                    /*
                     if (randomTargetY === null) {
                         randomTargetY = Math.random() * (canvas.height - player2.height);
                     }
@@ -243,6 +244,7 @@ canvas {
                     if (Math.abs(player2.y - randomTargetY) < 1) {
                         randomTargetY = null;
                     }
+                    */
                 } else {
                     if (ball.y < aiPaddleCenter - AIConfiguration.speed) {
                         player2.y -= AIConfiguration.speed;
