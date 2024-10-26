@@ -229,7 +229,7 @@ canvas {
         function moveAI() {
             if (AI == true) {
                 let aiPaddleCenter = player2.y + player2.height / 2;
-                if (!AIMovementDelayed) {
+                if (AIMovementDelayed) {
                     if (randomTargetY === null) {
                         randomTargetY = Math.random() * (canvas.height - player2.height);
                     }
