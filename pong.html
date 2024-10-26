@@ -235,7 +235,11 @@ canvas {
                         player2.y += AIConfiguration.speed;
                     }
                 } else {
-                    player2.y += Math.random() < 0.5 ?-Math.abs(AIConfiguration.speed):Math.abs(AIConfiguration.speed);
+                    if (ball.y < aiPaddleCenter - AIConfiguration.speed) {
+                        player2.y += AIConfiguration.speed;
+                    } else if (ball.y > aiPaddleCenter + AIConfiguration.speed) {
+                        player2.y -= AIConfiguration.speed;
+                    }
                 }
                 
                 player2.y = Math.max(0, Math.min(canvas.height - player2.height, player2.y));
