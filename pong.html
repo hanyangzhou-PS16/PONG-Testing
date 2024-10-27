@@ -310,9 +310,8 @@ canvas {
         }
        
         function drawPaddle(x, y, color, height) {
-            const paddleWidth = 25;
             ctx.fillStyle = color;
-            ctx.fillRect(x, y, paddleWidth, height);
+            ctx.fillRect(x, y, 25, height);
         }
         
         function handleRandomEvent() {
@@ -534,7 +533,7 @@ canvas {
             }
        
             if (
-                ball.x - ball.radius < player1.x + paddleWidth ||
+                ball.x - ball.radius < player1.x + 25 ||
                 ball.x + ball.radius > player1.x ||
                 ball.y + ball.radius > player1.y ||
                 ball.y - ball.radius < player1.y + player1.height
@@ -554,7 +553,7 @@ canvas {
             }
             if (
                 ball.x + ball.radius > player2.x ||
-                ball.x - ball.radius < player2.x + paddleWidth ||
+                ball.x - ball.radius < player2.x + 25 ||
                 ball.y + ball.radius > player2.y ||
                 ball.y - ball.radius < player2.y + player2.height
             ){
