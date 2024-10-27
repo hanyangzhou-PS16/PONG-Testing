@@ -556,6 +556,7 @@ canvas {
                 ball.y + ball.radius > player2.y &&
                 ball.y - ball.radius < player2.y + player2.height
             ){
+                ball.x = player2.x - ball.radius;
                 ball.speedX = (Math.sign(ball.speedX)===1)?-ball.speedX:ball.speedX;
                 increaseBallSpeed();
                 
