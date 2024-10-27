@@ -195,23 +195,23 @@ canvas {
 
         document.getElementById('easyButton').addEventListener('click', () => {
             if (AI == true) {
-                AIConfiguration.speed = 8;
-                AIConfiguration.reactionTime = 1500;
+                AIConfiguration.speed = 6;
+                AIConfiguration.reactionTime = 1000;
                 startGame();
             }
         });
         
         document.getElementById('mediumButton').addEventListener('click', () => {
             if (AI == true) {
-                AIConfiguration.speed = 10;
-                AIConfiguration.reactionTime = 1000;
+                AIConfiguration.speed = 8;
+                AIConfiguration.reactionTime = 800;
                 startGame();
             }
         });
         
         document.getElementById('hardButton').addEventListener('click', () => {
             if (AI == true) {
-                AIConfiguration.speed = 12;
+                AIConfiguration.speed = 10;
                 AIConfiguration.reactionTime = 500;
                 startGame();
             }
@@ -219,8 +219,8 @@ canvas {
 
         document.getElementById('impossibleButton').addEventListener('click', () => {
             if (AI == true) {
-                AIConfiguration.speed = 14;
-                AIConfiguration.reactionTime = 250;
+                AIConfiguration.speed = 12;
+                AIConfiguration.reactionTime = 300;
                 startGame();
             }
         });
