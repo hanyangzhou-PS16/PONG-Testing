@@ -538,6 +538,15 @@ canvas {
             ) {
                 ball.speedX = -ball.speedX;
                 increaseBallSpeed();
+
+                if (AI == true) {
+                    if (AIMovementDelayed == false) {
+                        AIMovementDelayed = true;
+                        setTimeout(() => {
+                            AIMovementDelayed = false;
+                        }, AIConfiguration.reactionTime);
+                    }
+                }
             }
        
             if (ball.x - ball.radius < 0) {
