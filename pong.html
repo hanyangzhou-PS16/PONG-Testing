@@ -538,9 +538,8 @@ canvas {
                 ball.y + ball.radius > player1.y &&
                 ball.y - ball.radius < player1.y + player1.height
             ){
-                ball.speedX = -ball.speedX;
+                ball.speedX = (Math.sign(ball.speedX)===-1)?-ball.speedX:ball.speedX;
                 increaseBallSpeed();
-                ball.x = player1.x + ball.radius;
                 
                 if (AI == true) {
                     if (AIMovementDelayed == false) {
@@ -557,9 +556,8 @@ canvas {
                 ball.y + ball.radius > player2.y &&
                 ball.y - ball.radius < player2.y + player2.height
             ){
-                ball.speedX = -ball.speedX;
+                ball.speedX = (Math.sign(ball.speedX)===1)?-ball.speedX:ball.speedX;
                 increaseBallSpeed();
-                ball.x = player2.x - ball.radius;
                 
                 if (AI == true) {
                     if (AIMovementDelayed == false) {
