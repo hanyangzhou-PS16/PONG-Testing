@@ -289,10 +289,10 @@ canvas {
         function increaseBallSpeed() {
             if (Math.abs(ball.speedX) < ball.maxSpeed) {
                 ball.speedX += ball.speedIncrement * Math.sign(ball.speedX);
-            }
+            } else {ball.speedX = ball.maxSpeed}
             if (Math.abs(ball.speedY) < ball.maxSpeed) {
                 ball.speedY += ball.speedIncrement * Math.sign(ball.speedY);
-            }
+            } else {ball.speedX = ball.maxSpeed}
         }
        
         function resetBall() {
@@ -315,6 +315,13 @@ canvas {
             ctx.fillStyle = color;
             ctx.fillRect(x, y, paddleWidth, height);
         }
+
+        function cap(s, m) {
+            if (s > m) {
+                s = m;
+            }
+            return s;
+        }
        
         function handleRandomEvent() {
             const randomEvent = Math.floor(Math.random() * 14) + 1;
@@ -328,8 +335,8 @@ canvas {
                 case 2:
                     ball.speedX *= 2;
                     ball.speedY *= 2;
-                    ball.speedX = Math.min(ball.speedX, ball.maxSpeed);
-                    ball.speedY = Math.min(ball.speedY, ball.maxSpeed);
+                    ball.speedX = cap(ball.speedX, ball.maxSpeed);
+                    ball.speedY = cap(ball.speedY, ball.maxSpeed);
                     eventText = 'Raging Ball';
                     break;
                 case 3:
@@ -384,8 +391,8 @@ canvas {
                     oldSpeedY = ball.speedY;
                     ball.speedX *= 2;
                     ball.speedY *= 2;
-                    ball.speedX = Math.min(ball.speedX, ball.maxSpeed);
-                    ball.speedY = Math.min(ball.speedY, ball.maxSpeed);
+                    ball.speedX = cap(ball.speedX, ball.maxSpeed);
+                    ball.speedY = cap(ball.speedY, ball.maxSpeed);
                     setTimeout(() => {
                         ball.speedX = oldSpeedX;
                         ball.speedY = oldSpeedY;
