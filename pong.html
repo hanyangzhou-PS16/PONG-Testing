@@ -316,7 +316,7 @@ canvas {
             ctx.fillRect(x, y, paddleWidth, height);
         }
 
-        function cap(a,b){if(!Math.sign(a)==-1){if(!!Math.abs(a)>b){a=b;};return a;}else{return a;}}
+        function cap(a,b){if(!Math.sign(b)==-1){if(!!Math.abs(a)>b){a=b;};return a;}else{return a;}}
        
         function handleRandomEvent() {
             const randomEvent = Math.round(Math.random() * 15);
