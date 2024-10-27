@@ -313,6 +313,24 @@ canvas {
             ctx.fillStyle = color;
             ctx.fillRect(x, y, 25, height);
         }
+
+        function checkPaddleCollision(ball, paddle) {
+            var ballLeft = ball.x - ball.radius;
+            var ballRight = ball.x + ball.radius;
+            var ballTop = ball.y - ball.radius;
+            var ballBottom = ball.y + ball.radius;
+        
+            var paddleLeft = paddle.x;
+            var paddleRight = paddle.x + PADDLE_WIDTH;
+            var paddleTop = paddle.y;
+            var paddleBottom = paddle.y + paddle.height;
+        
+            var collidesX = ballRight > paddleLeft && ballLeft < paddleRight;
+            var collidesY = ballBottom > paddleTop && ballTop < paddleBottom;
+        
+            return collidesX && collidesY;
+        }
+
         
         function handleRandomEvent() {
             const randomEvent = Math.round(Math.random() * 15);
@@ -510,37 +528,30 @@ canvas {
                 eventTextElement.style.display = 'none';
             }, 1500);
         }
-       
+        
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-       
+        
             ctx.beginPath();
             ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
             ctx.fillStyle = ball.color;
             ctx.fill();
             ctx.closePath();
-       
+        
             drawPaddle(player1.x, player1.y, player1.color, player1.height);
             drawPaddle(player2.x, player2.y, player2.color, player2.height);
-       
-            if (ball.speedX != 0 || ball.speedY != 0) {
-                ball.x += ball.speedX;
-                ball.y += ball.speedY;
-            }
-       
+        
+            ball.x += ball.speedX;
+            ball.y += ball.speedY;
+        
             if (ball.y + ball.radius >= canvas.height || ball.y - ball.radius <= 0) {
                 ball.speedY = -ball.speedY;
             }
-       
-            if (
-                ball.x - ball.radius < player1.x + 25 &&
-                ball.x + ball.radius > player1.x &&
-                ball.y + ball.radius > player1.y &&
-                ball.y - ball.radius < player1.y + player1.height
-            ){
-                ball.speedX = (Math.sign(ball.speedX)===-1)?-ball.speedX:ball.speedX;
+        
+            if (checkPaddleCollision(ball, player1)) {
+                ball.x = player1.x + 25 + ball.radius;
+                ball.speedX = Math.abs(ball.speedX);
                 increaseBallSpeed();
-                
                 if (AI == true) {
                     if (AIMovementDelayed == false) {
                         AIMovementDelayed = true;
@@ -550,16 +561,10 @@ canvas {
                     }
                 }
             }
-            if (
-                ball.x + ball.radius > player2.x &&
-                ball.x - ball.radius < player2.x + 25 &&
-                ball.y + ball.radius > player2.y &&
-                ball.y - ball.radius < player2.y + player2.height
-            ){
+            if (checkPaddleCollision(ball, player2)) {
                 ball.x = player2.x - ball.radius;
-                ball.speedX = (Math.sign(ball.speedX)===1)?-ball.speedX:ball.speedX;
+                ball.speedX = -Math.abs(ball.speedX);
                 increaseBallSpeed();
-                
                 if (AI == true) {
                     if (AIMovementDelayed == false) {
                         AIMovementDelayed = true;
@@ -569,10 +574,9 @@ canvas {
                     }
                 }
             }
-       
             if (ball.x - ball.radius < 0) {
                 player2.score++;
-                const player2ScoreElement = document.getElementById('player2Score');
+                var player2ScoreElement = document.getElementById('player2Score');
                 if (player2ScoreElement) {
                     player2ScoreElement.textContent = player2.score;
                 }
@@ -583,7 +587,7 @@ canvas {
                 }
             } else if (ball.x + ball.radius > canvas.width) {
                 player1.score++;
-                const player1ScoreElement = document.getElementById('player1Score');
+                var player1ScoreElement = document.getElementById('player1Score');
                 if (player1ScoreElement) {
                     player1ScoreElement.textContent = player1.score;
                 }
@@ -593,7 +597,6 @@ canvas {
                     resetBall();
                 }
             }
-       
             if (keysPressed[player1.up]) {
                 player1.y -= player1.speed;
                 player1.y = Math.max(0, player1.y);
