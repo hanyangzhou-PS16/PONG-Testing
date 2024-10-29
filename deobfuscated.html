@@ -128,10 +128,11 @@ canvas {
     <div id="difficultyMenu" style="display: none;">
         <h1>Choose a difficulty</h1>
         <div class="button-container">
+            <button id="veryEasyButton">Very Easy</button>
             <button id="easyButton">Easy</button>
             <button id="mediumButton">Medium</button>
             <button id="hardButton">Hard</button>
-            <button id="impossibleButton">Impossible</button>
+            <button id="nightmareButton">NIGHTMARE!</button>
         </div>
     </div>
 
@@ -192,17 +193,25 @@ canvas {
             startGame();
         });
 
-        document.getElementById('easyButton').addEventListener('click', () => {
+        document.getElementById('veryEasyButton').addEventListener('click', () => {
             if (AI == true) {
                 AIConfiguration.speed = 6;
                 AIConfiguration.reactionTime = 2000;
                 startGame();
             }
         });
+
+        document.getElementById('easyButton').addEventListener('click', () => {
+            if (AI == true) {
+                AIConfiguration.speed = 8;
+                AIConfiguration.reactionTime = 1500;
+                startGame();
+            }
+        });
         
         document.getElementById('mediumButton').addEventListener('click', () => {
             if (AI == true) {
-                AIConfiguration.speed = 8;
+                AIConfiguration.speed = 10;
                 AIConfiguration.reactionTime = 1000;
                 startGame();
             }
@@ -210,15 +219,15 @@ canvas {
         
         document.getElementById('hardButton').addEventListener('click', () => {
             if (AI == true) {
-                AIConfiguration.speed = 10;
+                AIConfiguration.speed = 12;
                 AIConfiguration.reactionTime = 500;
                 startGame();
             }
         });
 
-        document.getElementById('impossibleButton').addEventListener('click', () => {
+        document.getElementById('nightmareButton').addEventListener('click', () => {
             if (AI == true) {
-                AIConfiguration.speed = 12;
+                AIConfiguration.speed = 14;
                 AIConfiguration.reactionTime = 300;
                 startGame();
             }
