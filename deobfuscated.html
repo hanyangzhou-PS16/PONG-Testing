@@ -559,7 +559,7 @@ canvas {
         
             if (checkPaddleCollision(ball, player1)) {
                 ball.x = player1.x + 25 + ball.radius;
-                ball.speedX = Math.abs(ball.speedX);
+                ball.speedX = -ball.speedX;
                 increaseBallSpeed();
                 if (AI == true) {
                     if (AIMovementDelayed == false) {
@@ -571,8 +571,8 @@ canvas {
                 }
             }
             if (checkPaddleCollision(ball, player2)) {
-                ball.x = player2.x - ball.radius;
-                ball.speedX = -Math.abs(ball.speedX);
+                ball.x = player2.x - 25 - ball.radius;
+                ball.speedX = -ball.speedX;
                 increaseBallSpeed();
                 if (AI == true) {
                     if (AIMovementDelayed == false) {
