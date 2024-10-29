@@ -240,7 +240,7 @@ calculate2 = () => {
     }
 }
 
-function unlockFeature2(_0x320e50) {
+unlockFeature2 = (_0x320e50) => {
     const _0x1294c8 = _0x2b8aed,
         _0x419b78 = {
             'npUXd': function(_0x536dea) {
