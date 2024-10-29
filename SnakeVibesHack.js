@@ -1,6 +1,4 @@
-verifyValidUsername = () => {};
-amongUs = () => {};
-logInAttempt = () => {
+logInAttempt2 = () => {
     const _0x4c5fe4 = _0x2b8aed;
     const _0x38b61c = {
         'uLbIx': function(_0x505d62) {
@@ -39,15 +37,15 @@ logInAttempt = () => {
     const _0x25aa8a = _0x38b61c['rvGAj'],
         _0x55122b = _0x4c5fe4(0x213);
     document.getElementById("topSection").innerHTML = '<h3>Hello, Hacker. This is the Snake Vibes Program. Each section displays a different feature of the Snake Vibes Program.</h3>'
-    document.getElementById("calculator").innerHTML = `<hr><p>This is a calculator.You will be prompted to select your operation type,your first input,and your second input.Note that for sin,can,tos,and square root,The second number will be irrelevant.You can also type"pi"and"e",but they must be lowercase.Press the button below to run a calculation.The following operations are valid,with their respective symbols next to them.</p><ul><li>Addition+</li><li>Subtraction-</li><li>Multiplication*</li><li>Division/</li><li>Modulo%</li><li>Sine,Cosine,and Tangent#|~</li><li>Exponents^</li><li>Square Root $</li></ul><button onclick='calculate()'>Click Here</button>`
+    document.getElementById("calculator").innerHTML = `<hr><p>This is a calculator.You will be prompted to select your operation type,your first input,and your second input.Note that for sin,can,tos,and square root,The second number will be irrelevant.You can also type"pi"and"e",but they must be lowercase.Press the button below to run a calculation.The following operations are valid,with their respective symbols next to them.</p><ul><li>Addition+</li><li>Subtraction-</li><li>Multiplication*</li><li>Division/</li><li>Modulo%</li><li>Sine,Cosine,and Tangent#|~</li><li>Exponents^</li><li>Square Root $</li></ul><button onclick='calculate2()'>Click Here</button>`
     document[_0x4c5fe4(0x2cd)](_0x4c5fe4(0x311))[_0x4c5fe4(0x2d6)] = _0x38b61c.YKxpC;
-    _0x38b61c[_0x4c5fe4(0x297)](loadGame);
+    _0x38b61c[_0x4c5fe4(0x297)](loadGame2);
     document[_0x4c5fe4(0x2cd)](_0x38b61c[_0x4c5fe4(0x1de)])[_0x4c5fe4(0x2d6)] = _0x38b61c[_0x4c5fe4(0x281)];
-    _0x38b61c[_0x4c5fe4(0x297)](createNotepad);
+    _0x38b61c[_0x4c5fe4(0x297)](createNotepad2);
     document.getElementById('pong')[_0x4c5fe4(0x2d6)] = _0x4c5fe4(0x25d);
     document.getElementById('publicSection')[_0x4c5fe4(0x2d6)] = _0x38b61c[_0x4c5fe4(0x2dd)](_0x38b61c[_0x4c5fe4(0x2d9)](_0x38b61c[_0x4c5fe4(0x203)], _0x25aa8a), _0x4c5fe4(0x2f1)) + _0x55122b
 }
-calculate = () => {
+calculate2 = () => {
     const _0x53a6b6 = {
         'OVdRs': function(_0x2fa2b6) {
             return _0x2fa2b6()
@@ -242,7 +240,7 @@ calculate = () => {
     }
 }
 
-function unlockFeature(_0x320e50) {
+function unlockFeature2(_0x320e50) {
     const _0x1294c8 = _0x2b8aed,
         _0x419b78 = {
             'npUXd': function(_0x536dea) {
