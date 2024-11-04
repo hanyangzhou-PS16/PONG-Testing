@@ -545,10 +545,8 @@ canvas {
                 ball.y < player1.y + player1.height
             ) {
                 let oldSign = Math.sign(ball.speedX);
-                ball.speedX = -ball.speedX;
-                if (Math.sign(ball.speedX) == oldSign) {
-                    ball.speedX = -ball.speedX
-                }
+                let sign = -oldSign;
+                ball.speedX = sign * ball.speedX;
                 increaseBallSpeed();
                 if (AI == true) {
                     if (AIMovementDelayed == false) {
@@ -566,10 +564,8 @@ canvas {
                 ball.y < player2.y + player2.height
             ) {
                 let oldSign = Math.sign(ball.speedX);
-                ball.speedX = -ball.speedX;
-                if (Math.sign(ball.speedX) == oldSign) {
-                    ball.speedX = -ball.speedX
-                }
+                let sign = -oldSign;
+                ball.speedX = sign * ball.speedX;
                 increaseBallSpeed();
                 if (AI == true) {
                     if (AIMovementDelayed == false) {
