@@ -537,7 +537,7 @@ canvas {
         
             if (ball.y + ball.radius >= canvas.height || ball.y - ball.radius <= 0) {
                 ball.speedY = -ball.speedY;
-                ball.speedX = Math.floor(ball.speedX * 0.9);
+                ball.speedX = Math.floor(ball.speedX * 0.9) + 1;
             }
 
             if (
