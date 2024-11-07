@@ -540,7 +540,7 @@ canvas {
             }
             
             if (
-                ball.x - ball.radius < player1.x + 25 &&
+                ball.x < player1.x + 25 &&
                 ball.y > player1.y &&
                 ball.y < player1.y + player1.height
             ) {
@@ -557,7 +557,7 @@ canvas {
             }
        
             if (
-                ball.x + ball.radius > player2.x &&
+                ball.x > player2.x &&
                 ball.y > player2.y &&
                 ball.y < player2.y + player2.height
             ) {
