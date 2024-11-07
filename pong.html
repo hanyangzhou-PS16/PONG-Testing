@@ -522,102 +522,70 @@ canvas {
         
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
+            
+            // Draw the ball
             ctx.beginPath();
             ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
             ctx.fillStyle = ball.color;
             ctx.fill();
             ctx.closePath();
-        
+            
+            // Draw paddles
             drawPaddle(player1.x, player1.y, player1.color, player1.height);
             drawPaddle(player2.x, player2.y, player2.color, player2.height);
-        
+            
+            // Move the ball
             ball.x += ball.speedX;
             ball.y += ball.speedY;
         
+            // Handle collisions with top and bottom walls
             if (ball.y + ball.radius >= canvas.height || ball.y - ball.radius <= 0) {
                 ball.speedY = -ball.speedY;
             }
             
-            if (
-                ball.x < player1.x + 25 &&
-                ball.y > player1.y &&
-                ball.y < player1.y + player1.height
-            ) {
-                ball.speedX = -ball.speedX;
-                increaseBallSpeed();
-                if (AI == true) {
-                    if (AIMovementDelayed == false) {
-                        AIMovementDelayed = true;
-                        setTimeout(() => {
-                            AIMovementDelayed = false;
-                        }, AIConfiguration.reactionTime);
-                    }
-                }
-            }
-       
-            if (
-                ball.x > player2.x &&
-                ball.y > player2.y &&
-                ball.y < player2.y + player2.height
-            ) {
-                ball.speedX = -ball.speedX;
-                increaseBallSpeed();
-                if (AI == true) {
-                    if (AIMovementDelayed == false) {
-                        AIMovementDelayed = true;
-                        setTimeout(() => {
-                            AIMovementDelayed = false;
-                        }, AIConfiguration.reactionTime);
-                    }
-                }
-            }
-            
+            // Check for collisions with paddles
+            handlePaddleCollision(player1);
+            handlePaddleCollision(player2);
+        
+            // Handle out-of-bounds (scoring)
             if (ball.x - ball.radius < 0) {
                 player2.score++;
-                var player2ScoreElement = document.getElementById('player2Score');
-                if (player2ScoreElement) {
-                    player2ScoreElement.textContent = player2.score;
-                }
-                if (player2.score >= 5) {
-                    endGame(2);
-                } else {
-                    resetBall();
-                }
+                updateScore();
+                resetBall();
             } else if (ball.x + ball.radius > canvas.width) {
                 player1.score++;
-                var player1ScoreElement = document.getElementById('player1Score');
-                if (player1ScoreElement) {
-                    player1ScoreElement.textContent = player1.score;
-                }
-                if (player1.score >= 5) {
-                    endGame(1);
-                } else {
-                    resetBall();
-                }
+                updateScore();
+                resetBall();
             }
-            if (keysPressed[player1.up]) {
-                player1.y -= player1.speed;
-                player1.y = Math.max(0, player1.y);
+        
+            // Paddle movement
+            handlePaddleMovement(player1);
+            handlePaddleMovement(player2);
+        }
+        
+        function handlePaddleCollision(player) {
+            if (ball.x - ball.radius < player.x + 25 && ball.x + ball.radius > player.x && ball.y > player.y && ball.y < player.y + player.height) {
+                ball.speedX = -ball.speedX;
+                increaseBallSpeed();
             }
-            if (keysPressed[player1.down]) {
-                player1.y += player1.speed;
-                player1.y = Math.min(canvas.height - player1.height, player1.y);
+        }
+        
+        function updateScore() {
+            document.getElementById('player1Score').textContent = player1.score;
+            document.getElementById('player2Score').textContent = player2.score;
+        
+            if (player1.score >= 5) {
+                endGame(1);
+            } else if (player2.score >= 5) {
+                endGame(2);
             }
-            if (AI == false) {
-                if (keysPressed[player2.up]) {
-                    player2.y -= player2.speed;
-                    player2.y = Math.max(0, player2.y);
-                }
-                if (keysPressed[player2.down]) {
-                    player2.y += player2.speed;
-                    player2.y = Math.min(canvas.height - player2.height, player2.y);
-                }
-            } else {
-                if (AIMovementDelayed == false) {
-                    moveAI();
-                }
-            }
+        }
+        
+        function resetBall() {
+            ball.x = canvas.width / 2;
+            ball.y = canvas.height / 2;
+            ball.speedX = 5;
+            ball.speedY = 5;
         }
        
         window.addEventListener('resize', () => {
