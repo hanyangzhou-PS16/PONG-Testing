@@ -538,7 +538,7 @@ canvas {
             if (ball.y + ball.radius >= canvas.height || ball.y - ball.radius <= 0) {
                 ball.speedY = -ball.speedY;
             }
-
+            
             if (
                 ball.x - ball.radius < player1.x + 25 &&
                 ball.y > player1.y &&
@@ -546,6 +546,7 @@ canvas {
             ) {
                 ball.speedX = -ball.speedX;
                 increaseBallSpeed();
+                alert("Collided!")
                 if (AI == true) {
                     if (AIMovementDelayed == false) {
                         AIMovementDelayed = true;
@@ -563,6 +564,7 @@ canvas {
             ) {
                 ball.speedX = -ball.speedX;
                 increaseBallSpeed();
+                alert("Collided!")
                 if (AI == true) {
                     if (AIMovementDelayed == false) {
                         AIMovementDelayed = true;
