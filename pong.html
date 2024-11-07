@@ -615,8 +615,10 @@ canvas {
                     player2.y += player2.speed;
                     player2.y = Math.min(canvas.height - player2.height, player2.y);
                 }
-            } else if (AIMovementDelayed == false) {
-                moveAI();
+            } else {
+                if (AIMovementDelayed == false) {
+                    moveAI();
+                }
             }
         }
        
