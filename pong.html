@@ -157,6 +157,7 @@ canvas {
         let keysPressed = {};
         let player1, player2, ball, drawInterval, eventInterval, oldSpeedX, oldSpeedY;
         let AI = false;
+        let AIDelayed = false;
         let AIConfiguration = {
                 speed: 0,
                 reactionTime: 1000
@@ -549,7 +550,7 @@ canvas {
                 ball.x += ball.speedX;
                 ball.y += ball.speedY;
             }
-                   if (ball.y + ball.radius >= canvas.height || ball.y - ball.radius <= 0) {
+            if (ball.y + ball.radius >= canvas.height || ball.y - ball.radius <= 0) {
                 ball.speedY = -ball.speedY;
             }
        
@@ -560,6 +561,13 @@ canvas {
             ) {
                 ball.speedX = -ball.speedX;
                 increaseBallSpeed();
+
+                if (AIDelayed == false) {
+                    AIDelayed = true;
+                    setTimeout(() => {
+                        AIDelayed = false;
+                    }, AIConfiguration.reactionTime);
+                }
             }
        
             if (
@@ -569,6 +577,13 @@ canvas {
             ) {
                 ball.speedX = -ball.speedX;
                 increaseBallSpeed();
+
+                if (AIDelayed == false) {
+                    AIDelayed = true;
+                    setTimeout(() => {
+                        AIDelayed = false;
+                    }, AIConfiguration.reactionTime);
+                }
             }
        
             if (ball.x - ball.radius < 0) {
@@ -612,7 +627,7 @@ canvas {
                     player2.y += player2.speed;
                     player2.y = Math.min(canvas.height - player2.height, player2.y);
                 }
-            } else {
+            } else if (!AIDelayed) {
                 moveAI()
             }
         }
