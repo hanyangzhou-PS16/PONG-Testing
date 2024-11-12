@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pong</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Pong</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     <style>
 body {
@@ -124,7 +123,6 @@ canvas {
             <button id="multiButton">Multiplayer</button>
         </div>
     </div>
-
     <div id="difficultyMenu" style="display: none;">
         <h1>Choose a difficulty</h1>
         <div class="button-container">
@@ -132,7 +130,7 @@ canvas {
             <button id="easyButton">Easy</button>
             <button id="mediumButton">Medium</button>
             <button id="hardButton">Hard</button>
-            <button id="nightmareButton">NIGHTMARE!</button>
+            <button id="nightmareButton">Nightmare</button>
         </div>
     </div>
 
@@ -148,22 +146,34 @@ canvas {
     <div id="gameResult" style="display: none;"></div>
 
     <script>
-        let cap=(a,b)=>{if(!Math.sign(b)===-1){if(!!Math.abs(a)>b){a=b;};return a;}else{if(a>b){a=b;};return a;}};
-        let getPong=()=>{const a=29;const b=291;const c=63;const d=47;var calculatePongMomentum=a+b-c+d;document.getElementById("title").textContent="Super Glitchy Pong (v1.1)";var calculatePongMomentum2=a-b+c-d;};
+        function getPong() {
+            const a=29;const b=291;const c=63;const d=47;var calculatePongMomentum=a+b-c+d;const z=344;const y=129;const x=547;let f=document.getElementById("title");let momentumFormula=calculatePongMomentum-5+z-y+x;let e="Super Glitchy Pong Game (Jackson Edition)";var calculatePongMomentum2=a-b+c-d;f.textContent=e;
+        }
         let startMenu = document.getElementById('startMenu');
         let controlsPage = document.getElementById('controlsPage');
         let gamemodeMenu = document.getElementById('gamemodeMenu');
-        let difficultyMenu = document.getElementById('difficultyMenu');
         let canvas = document.getElementById('pongCanvas');
         let ctx = canvas.getContext('2d');
         let keysPressed = {};
+        let player1, player2, ball, drawInterval, eventInterval, oldSpeedX, oldSpeedY;
+        let AI = false;
         let AIConfiguration = {
                 speed: 0,
                 reactionTime: 1000
         };
-        let player1, player2, ball, drawInterval, eventInterval, oldSpeedX, oldSpeedY;
-        let AIMovementDelayed = false;
-        let AI = false;
+
+        function moveAI() {
+            if (AI == true) {
+                const aiPaddleCenter = player2.y + player2.height / 2;
+                if (ball.y < aiPaddleCenter - AIConfiguration.speed) {
+                    player2.y -= AIConfiguration.speed;
+                } else if (ball.y > aiPaddleCenter + AIConfiguration.speed) {
+                    player2.y += AIConfiguration.speed;
+                }
+               
+                player2.y = Math.max(0, Math.min(canvas.height - player2.height, player2.y));
+            }
+        }
        
         showStartMenu();
        
@@ -208,19 +218,19 @@ canvas {
                 startGame();
             }
         });
-        
+       
         document.getElementById('mediumButton').addEventListener('click', () => {
             if (AI == true) {
                 AIConfiguration.speed = 10;
-                AIConfiguration.reactionTime = 1500;
+                AIConfiguration.reactionTime = 1000;
                 startGame();
             }
         });
-        
+       
         document.getElementById('hardButton').addEventListener('click', () => {
             if (AI == true) {
                 AIConfiguration.speed = 12;
-                AIConfiguration.reactionTime = 800;
+                AIConfiguration.reactionTime = 500;
                 startGame();
             }
         });
@@ -228,7 +238,8 @@ canvas {
         document.getElementById('nightmareButton').addEventListener('click', () => {
             if (AI == true) {
                 AIConfiguration.speed = 14;
-                AIConfiguration.reactionTime = 500;
+                AIConfiguration.reactionTime = 300;
+
                 startGame();
             }
         });
@@ -236,12 +247,12 @@ canvas {
         function moveAI() {
             if (AI == true) {
                 const aiPaddleCenter = player2.y + player2.height / 2;
-                if (ball.y < aiPaddleCenter - AIConfiguration.speed) {
-                    player2.y -= AIConfiguration.speed;
-                } else if (ball.y > aiPaddleCenter + AIConfiguration.speed) {
-                    player2.y += AIConfiguration.speed;
+                if (ball.y < aiPaddleCenter - 10) {
+                    player2.y -= player2.speed;
+                } else if (ball.y > aiPaddleCenter + 10) {
+                    player2.y += player2.speed;
                 }
-                
+               
                 player2.y = Math.max(0, Math.min(canvas.height - player2.height, player2.y));
             }
         }
@@ -280,13 +291,14 @@ canvas {
         function hideGamemodeMenu() {
             gamemodeMenu.style.display = 'none';
         }
-
+     
         function showDifficultyMenu() {
             difficultyMenu.style.display = 'block';
         }
 
         function hideDifficultyMenu() {
             difficultyMenu.style.display = 'none';
+
         }
        
         function resizeCanvas() {
@@ -297,10 +309,10 @@ canvas {
         function increaseBallSpeed() {
             if (Math.abs(ball.speedX) < ball.maxSpeed) {
                 ball.speedX += ball.speedIncrement * Math.sign(ball.speedX);
-            } else {ball.speedX = ball.maxSpeed}
+            }
             if (Math.abs(ball.speedY) < ball.maxSpeed) {
                 ball.speedY += ball.speedIncrement * Math.sign(ball.speedY);
-            } else {ball.speedX = ball.maxSpeed}
+            }
         }
        
         function resetBall() {
@@ -319,12 +331,13 @@ canvas {
         }
        
         function drawPaddle(x, y, color, height) {
+            const paddleWidth = 25;
             ctx.fillStyle = color;
-            ctx.fillRect(x, y, 25, height);
+            ctx.fillRect(x, y, paddleWidth, height);
         }
-
+       
         function handleRandomEvent() {
-            const randomEvent = Math.round(Math.random() * 15);
+            const randomEvent = Math.floor(Math.random() * 7);
             var eventText = "";
             switch (randomEvent) {
                 case 0:
@@ -519,73 +532,89 @@ canvas {
                 eventTextElement.style.display = 'none';
             }, 1500);
         }
-        
+       
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Draw the ball
+       
             ctx.beginPath();
             ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
             ctx.fillStyle = ball.color;
             ctx.fill();
             ctx.closePath();
-            
-            // Draw paddles
+       
             drawPaddle(player1.x, player1.y, player1.color, player1.height);
             drawPaddle(player2.x, player2.y, player2.color, player2.height);
-            
-            // Move the ball
-            ball.x += ball.speedX;
-            ball.y += ball.speedY;
-        
-            // Handle collisions with top and bottom walls
-            if (ball.y + ball.radius >= canvas.height || ball.y - ball.radius <= 0) {
+       
+            if (ball.speedX != 0 || ball.speedY != 0) {
+                ball.x += ball.speedX;
+                ball.y += ball.speedY;
+            }
+                   if (ball.y + ball.radius >= canvas.height || ball.y - ball.radius <= 0) {
                 ball.speedY = -ball.speedY;
             }
-            
-            // Check for collisions with paddles
-            handlePaddleCollision(player1);
-            handlePaddleCollision(player2);
-        
-            // Handle out-of-bounds (scoring)
-            if (ball.x - ball.radius < 0) {
-                player2.score++;
-                updateScore();
-                resetBall();
-            } else if (ball.x + ball.radius > canvas.width) {
-                player1.score++;
-                updateScore();
-                resetBall();
-            }
-        
-            // Paddle movement
-            handlePaddleMovement(player1);
-            handlePaddleMovement(player2);
-        }
-        
-        function handlePaddleCollision(player) {
-            if (ball.x - ball.radius < player.x + 25 && ball.x + ball.radius > player.x && ball.y > player.y && ball.y < player.y + player.height) {
+       
+            if (
+                ball.x - ball.radius < player1.x + 25 &&
+                ball.y > player1.y &&
+                ball.y < player1.y + player1.height
+            ) {
                 ball.speedX = -ball.speedX;
                 increaseBallSpeed();
             }
-        }
-        
-        function updateScore() {
-            document.getElementById('player1Score').textContent = player1.score;
-            document.getElementById('player2Score').textContent = player2.score;
-        
-            if (player1.score >= 5) {
-                endGame(1);
-            } else if (player2.score >= 5) {
-                endGame(2);
+       
+            if (
+                ball.x + ball.radius > player2.x &&
+                ball.y > player2.y &&
+                ball.y < player2.y + player2.height
+            ) {
+                ball.speedX = -ball.speedX;
+                increaseBallSpeed();
             }
-        }
-        
-        function resetBall() {
-            ball.x = canvas.width / 2;
-            ball.y = canvas.height / 2;
-            ball.speedX = 5;
-            ball.speedY = 5;
+       
+            if (ball.x - ball.radius < 0) {
+                player2.score++;
+                const player2ScoreElement = document.getElementById('player2Score');
+                if (player2ScoreElement) {
+                    player2ScoreElement.textContent = player2.score;
+                }
+                if (player2.score >= 5) {
+                    endGame(2);
+                } else {
+                    resetBall();
+                }
+            } else if (ball.x + ball.radius > canvas.width) {
+                player1.score++;
+                const player1ScoreElement = document.getElementById('player1Score');
+                if (player1ScoreElement) {
+                    player1ScoreElement.textContent = player1.score;
+                }
+                if (player1.score >= 5) {
+                    endGame(1);
+                } else {
+                    resetBall();
+                }
+            }
+       
+            if (keysPressed[player1.up]) {
+                player1.y -= player1.speed;
+                player1.y = Math.max(0, player1.y);
+            }
+            if (keysPressed[player1.down]) {
+                player1.y += player1.speed;
+                player1.y = Math.min(canvas.height - player1.height, player1.y);
+            }
+            if (AI == false) {
+                if (keysPressed[player2.up]) {
+                    player2.y -= player2.speed;
+                    player2.y = Math.max(0, player2.y);
+                }
+                if (keysPressed[player2.down]) {
+                    player2.y += player2.speed;
+                    player2.y = Math.min(canvas.height - player2.height, player2.y);
+                }
+            } else {
+                moveAI()
+            }
         }
        
         window.addEventListener('resize', () => {
@@ -600,6 +629,8 @@ canvas {
             hideGamemodeMenu();
             hideControlsPage();
             hideDifficultyMenu();
+
+
             showGameCanvas();
        
             player1 = {
@@ -632,7 +663,7 @@ canvas {
                 radius: 15,
                 speedX: 5,
                 speedY: 5,
-                maxSpeed: 10,
+                maxSpeed: 12,
                 speedIncrement: 1,
                 color: 'white'
             };
