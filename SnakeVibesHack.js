@@ -1,6 +1,6 @@
 document.body.innerHTML = "<div id='topSection'><h3>Please Sign In.</h3><p><strong>Id</strong></p><input type='text' id='id2'><p><strong>Password</strong></p><input type='password' id='password2'><br><button id='submit' onclick='logInAttempt2()'><strong>Login</strong></button></div><div id='calculator2'></div><div id='snake2'></div><div id='notepadArea2'></div><div id='notepad2'></div><div id='pong2'></div><div id='publicSection2'></div>";
 logInAttempt2 = () => {
-    const _0x4c5fe4 = _0x2b8aed;
+    const _0x4c5fe4 = _0x31cc9a;
     const _0x38b61c = {
         'uLbIx': function(_0x505d62) {
             return _0x505d62()
