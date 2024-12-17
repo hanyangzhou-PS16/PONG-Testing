@@ -343,6 +343,7 @@ canvas {
             var eventText = "";
             switch (randomEvent) {
                 case 0:
+                    
                     let switchAmount = 0
                     let switchDirection = () => {
                         if (switchAmount < 20) {
@@ -356,6 +357,10 @@ canvas {
                             setTimeout(switchDirection, 200 + Math.random() * 400);
                         }
                     }
+                    ball.speedX *= 2;
+                    ball.speedY *= 2;
+                    ball.speedX = cap(ball.speedX, ball.maxSpeed);
+                    ball.speedY = cap(ball.speedY, ball.maxSpeed);
                     switchDirection()
                     eventText = 'Perplexity Ball'
                     break;
@@ -686,7 +691,7 @@ canvas {
                 radius: 15,
                 speedX: 5,
                 speedY: 5,
-                maxSpeed: 12,
+                maxSpeed: 10,
                 speedIncrement: 1,
                 color: 'white'
             };
