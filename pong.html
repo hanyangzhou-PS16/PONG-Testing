@@ -338,7 +338,8 @@ canvas {
         }
        
         function handleRandomEvent() {
-            const randomEvent = Math.floor(Math.random() * 7);
+            const randomEvent = 0
+                //Math.floor(Math.random() * 7);
             var eventText = "";
             switch (randomEvent) {
                 case 0:
@@ -350,6 +351,7 @@ canvas {
                             setTimeout(switchDirection, 200 + Math.random() * 800);
                         }
                     }
+                    switchDirection()
                     eventText = 'Directional Ball'
                     break;
                 case 1:
