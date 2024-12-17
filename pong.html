@@ -345,7 +345,7 @@ canvas {
                 case 0:
                     let switchAmount = 0
                     let switchDirection = () => {
-                        if (switchAmount < 8) {
+                        if (switchAmount < 20) {
                             switchAmount += 1;
                             let direction = Math.random() < 0.5 ? 'speedX' : 'speedY';
                             if (direction === 'speedX') {
@@ -353,7 +353,7 @@ canvas {
                             } else {
                                 ball.speedY = -ball.speedY;
                             }                            
-                            setTimeout(switchDirection, 200 + Math.random() * 800);
+                            setTimeout(switchDirection, 200 + Math.random() * 400);
                         }
                     }
                     switchDirection()
