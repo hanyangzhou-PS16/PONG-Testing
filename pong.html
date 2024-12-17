@@ -207,7 +207,7 @@ canvas {
         document.getElementById('veryEasyButton').addEventListener('click', () => {
             if (AI == true) {
                 AIConfiguration.speed = 8;
-                AIConfiguration.reactionTime = 3000;
+                AIConfiguration.reactionTime = 2000;
                 startGame();
             }
         });
@@ -215,7 +215,7 @@ canvas {
         document.getElementById('easyButton').addEventListener('click', () => {
             if (AI == true) {
                 AIConfiguration.speed = 10;
-                AIConfiguration.reactionTime = 2000;
+                AIConfiguration.reactionTime = 1500;
                 startGame();
             }
         });
@@ -223,23 +223,23 @@ canvas {
         document.getElementById('mediumButton').addEventListener('click', () => {
             if (AI == true) {
                 AIConfiguration.speed = 12;
-                AIConfiguration.reactionTime = 1000;
+                AIConfiguration.reactionTime = 800;
                 startGame();
             }
         });
        
         document.getElementById('hardButton').addEventListener('click', () => {
             if (AI == true) {
-                AIConfiguration.speed = 14;
-                AIConfiguration.reactionTime = 500;
+                AIConfiguration.speed = 16;
+                AIConfiguration.reactionTime = 300;
                 startGame();
             }
         });
 
         document.getElementById('nightmareButton').addEventListener('click', () => {
             if (AI == true) {
-                AIConfiguration.speed = 16;
-                AIConfiguration.reactionTime = 300;
+                AIConfiguration.speed = 18;
+                AIConfiguration.reactionTime = 150;
 
                 startGame();
             }
