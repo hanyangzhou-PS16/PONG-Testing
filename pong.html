@@ -342,13 +342,14 @@ canvas {
             var eventText = "";
             switch (randomEvent) {
                 case 0:
-                    var directionSwitchInterval = setInterval(() => {
-                        ball.speedX = -ball.speedX
-                        ball.speedY = -ball.speedY
-                    }, Math.round(Math.random() * 2000 + 1));
-                    setTimeout(() => {
-                        clearInterval(directionSwitchInterval);
-                    }, 8000)
+                    let switchAmount = 0
+                    let switchDirection = () => {
+                        if (switchAmount < 8) {
+                            switchAmount += 1;
+                            ball.speedX = -ball.speedX
+                            setTimeout(switchDirection, 200 + Math.random() * 800);
+                        }
+                    }
                     eventText = 'Directional Ball'
                     break;
                 case 1:
