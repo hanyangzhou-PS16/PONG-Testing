@@ -347,12 +347,17 @@ canvas {
                     let switchDirection = () => {
                         if (switchAmount < 8) {
                             switchAmount += 1;
-                            ball.speedX = -ball.speedX
+                            let direction = Math.random() < 0.5 ? 'speedX' : 'speedY';
+                            if (direction === 'speedX') {
+                                ball.speedX = -ball.speedX;
+                            } else {
+                                ball.speedY = -ball.speedY;
+                            }                            
                             setTimeout(switchDirection, 200 + Math.random() * 800);
                         }
                     }
                     switchDirection()
-                    eventText = 'Directional Ball'
+                    eventText = 'Perplexity Ball'
                     break;
                 case 1:
                     ball.speedX = Math.floor(ball.speedX / 2);
