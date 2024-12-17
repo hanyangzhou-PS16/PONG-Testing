@@ -319,8 +319,8 @@ canvas {
         function resetBall() {
             ball.x = canvas.width / 2;
             ball.y = canvas.height / 2;
-            ball.speedX = 5;
-            ball.speedY = 5;
+            ball.speedX = Math.random() < 0.5 ? 5 : -5;
+            ball.speedY = Math.random() < 0.5 ? 5 : -5;
         }
        
         function keyDownHandler(e) {
@@ -688,7 +688,7 @@ canvas {
                 y: canvas.height / 2,
                 radius: 15,
                 speedX: Math.random() < 0.5 ? 5 : -5,
-                speedY: 5,
+                speedY: Math.random() < 0.5 ? 5 : -5,
                 maxSpeed: 15,
                 speedIncrement: 1,
                 color: 'white'
