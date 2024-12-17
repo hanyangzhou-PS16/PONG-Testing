@@ -689,9 +689,9 @@ canvas {
                 x: canvas.width / 2,
                 y: canvas.height / 2,
                 radius: 15,
-                speedX: 5,
+                speedX: Math.random() < 0.5 ? 5 : -5;,
                 speedY: 5,
-                maxSpeed: 10,
+                maxSpeed: 15,
                 speedIncrement: 1,
                 color: 'white'
             };
