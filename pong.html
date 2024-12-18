@@ -390,8 +390,8 @@
                     eventText = 'Perplexity Ball'
                     break;
                 case 1:
-                    ball.speedX = Math.floor(ball.speedX / 2);
-                    ball.speedY = Math.floor(ball.speedY / 2);
+                    ball.speedX = Math.ceil(ball.speedX / 2);
+                    ball.speedY = Math.ceil(ball.speedY / 2);
                     eventText = 'Calming Ball';
                     break;
                 case 2:
@@ -778,7 +778,7 @@
                 radius: 15,
                 speedX: Math.random() < 0.5 ? 5 : -5,
                 speedY: Math.random() < 0.5 ? 5 : -5,
-                maxSpeed: 12,
+                maxSpeed: 10,
                 speedIncrement: 1,
                 color: 'white'
             };
