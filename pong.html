@@ -35,12 +35,20 @@
         }
         
         .randomEvent {
-            top: 28%;
+            top: 18%;
             left: 50%;
             font-family: "Roboto";
             color: #ffffff;
+            font-size: 30px;
             padding: 20px;
             z-index: 100;
+            rotate: 0deg;
+            transition-duration: 0.3s;
+        }
+
+        .randomEvent:hover {
+            font-size: 31px;
+            rotate: 1deg;
         }
         
         #startMenu {
@@ -108,15 +116,31 @@
         }
         
         #player1Score {
+            font-family: "Roboto";
             font-size: 24px;
             color: #45aee6;
             margin: 0 10px;
+            transition-duration: 0.3s;
+            rotate: 0deg;
+        }
+
+        #player1Score:hover {
+            font-size: 25px;
+            rotate: 1deg;
         }
         
         #player2Score {
+            font-family: "Roboto";
             font-size: 24px;
             color: #e65045;
             margin: 0 10px;
+            transition-duration: 0.3s;
+            rotate: 0deg;
+        }
+
+        #player2Score:hover {
+            font-size: 25px;
+            rotate: 1deg;
         }
         
         #gameResult {
@@ -140,7 +164,9 @@
 
     <div id="controlsPage" style="display: none;">
         <h1>Controls</h1>
-        <p>Player 1: W + S, Player 2: ArrowUp + Arrow Down</p>
+        <p>Player 1: W + S</p>
+        <br>
+        <p>Player 2: ArrowUp + Arrow Down</p>
         <button class="backButton">Back</button>
     </div>
 
