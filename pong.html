@@ -35,10 +35,10 @@
         }
         
         .randomEvent {
-            top: 24%;
+            top: 28%;
             left: 50%;
-            font-size: 28px;
-            color: #ff3b30;
+            font-family: "Roboto";
+            color: #ffffff;
             padding: 20px;
             z-index: 100;
         }
@@ -561,12 +561,14 @@
                     eventText = 'Invisible Ball';
                     break;
                 case 16:
-                    ball.color = '#ff7569';
+                    ball.color = '#ff2bdf';
                     spike = true;
                     setTimeout(() => {
                         spike = false;
                         ball.color = 'white';
                     }, 8000)
+                    eventText = 'Spike Ball'
+                    break;
             }
        
             const eventTextElement = document.getElementById('eventText');
@@ -592,6 +594,11 @@
             drawPaddle(player2.x, player2.y, player2.color, player2.height);
        
             if (ball.speedX != 0 || ball.speedY != 0) {
+                if (ball.speedX > ball.maxSpeed) {
+                    ball.speedX = ball.maxSpeed
+                } else if (ball.speedY > ball.maxSpeed) {
+                    ball.speedY = ball.maxSpeed
+                }
                 ball.x += ball.speedX;
                 ball.y += ball.speedY;
             }
