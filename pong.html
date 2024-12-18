@@ -3,102 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Pong</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
     <style>
-body {
-    margin: 0;
-    overflow: hidden;
-    background-color: #176785;
-}
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        p {
+            font-size: 18px;
+            transition-duration: 0.3s;
+            font-family: "Roboto";
+            rotate: 0deg;
+        }
+        
+        p:hover {
+            font-size: 19px;
+            rotate: 1deg;
+        }
+        
+        h1 {
+            font-size: 28px;
+            font-family: "Roboto";
+            transition-duration: 0.3s;
+            rotate: 0deg;
+        }
 
-p {
-    font-size: 18px;
-}
-
-.randomEvent {
-    top: 24%;
-    left: 50%;
-    font-size: 28px;
-    color: #ff3b30;
-    padding: 20px;
-    z-index: 100;
-}
-
-#startMenu {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #176785;
-}
-
-#startMenu .title {
-    font-size: 48px;
-    color: #ffffff;
-    margin-bottom: 20px;
-}
-
-#startMenu .button-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-button {
-    padding: 12px 24px;
-    font-size: 18px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-canvas {
-    display: block;
-    margin: 0 auto;
-    border: 28px solid #000000;
-    background-color: #000000;
-    box-sizing: border-box;
-    z-index: 1;
-}
-
-#scoreboard {
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    align-items: center;
-}
-
-#player1Score {
-    font-size: 24px;
-    color: #45aee6;
-    margin: 0 10px;
-}
-
-#player2Score {
-    font-size: 24px;
-    color: #e65045;
-    margin: 0 10px;
-}
-
-#gameResult {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-size: 24px;
-}
+        h1:hover {
+            font-size: 29px;
+            rotate: 1deg;
+        }
+        
+        .randomEvent {
+            top: 24%;
+            left: 50%;
+            font-size: 28px;
+            color: #ff3b30;
+            padding: 20px;
+            z-index: 100;
+        }
+        
+        #startMenu {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        #startMenu .title {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        #startMenu .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        button {
+            padding: 10px;
+            margin: 8px;
+            font-size: 18px;
+            background-color: #cccccc;
+            color: #000000;
+            border: 4px solid #000000;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: "Roboto";
+            transition-duration: 0.3s;
+            rotate: 0deg;
+        }
+        
+        button:hover {
+            font-size: 20px;
+            rotate: 6deg;
+            border: 4px solid #80ccff;
+            background-color: #b3e0ff;
+        }
+        
+        button:active {
+            font-size: 16px;
+            border: 4px solid #b3e0ff;
+            background-color: #80ccff;
+        }
+        
+        canvas {
+            display: block;
+            margin: 0 auto;
+            border: 28px solid #000000;
+            background-color: #000000;
+            box-sizing: border-box;
+            z-index: 1;
+        }
+        
+        #scoreboard {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+        }
+        
+        #player1Score {
+            font-size: 24px;
+            color: #45aee6;
+            margin: 0 10px;
+        }
+        
+        #player2Score {
+            font-size: 24px;
+            color: #e65045;
+            margin: 0 10px;
+        }
+        
+        #gameResult {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 24px;
+        }
 </style>
 </head>
 <body>
@@ -113,7 +141,7 @@ canvas {
     <div id="controlsPage" style="display: none;">
         <h1>Controls</h1>
         <p>Player 1: W + S, Player 2: ArrowUp + Arrow Down</p>
-        <button id="backButton">Back</button>
+        <button class="backButton">Back</button>
     </div>
 
     <div id="gamemodeMenu" style="display: none;">
@@ -122,6 +150,7 @@ canvas {
             <button id="singleButton">Singleplayer</button>
             <button id="multiButton">Multiplayer</button>
         </div>
+        <button class="backButton">Back</button>
     </div>
     <div id="difficultyMenu" style="display: none;">
         <h1>Choose a difficulty</h1>
@@ -132,15 +161,16 @@ canvas {
             <button id="hardButton">Hard</button>
             <button id="nightmareButton">Nightmare</button>
         </div>
+        <button class="backButton">Back</button>
     </div>
 
     <canvas id="pongCanvas" style="display: none;"></canvas>
     <div id="eventText" class="randomEvent" style="position: absolute; transform: translate(-50%, -50%); display: none;"></div>
 
     <div id="scoreboard">
-        <p id="player1Score" style="font-size: 24px;">0</p>
-        <p style="color: #ffffff; font-size: 24px;">-</p>
-        <p id="player2Score" style="font-size: 24px;">0</p>
+        <p id="player1Score">0</p>
+        <p style="color: #ffffff;">-</p>
+        <p id="player2Score">0</p>
     </div>
 
     <div id="gameResult" style="display: none;"></div>
@@ -188,10 +218,14 @@ canvas {
             showControlsPage();
         });
 
-        document.getElementById('backButton').addEventListener('click', () => {
-            showStartMenu();
-            hideControlsPage();
-        });
+        for (let i = 0; i < document.querySelectorAll('.backButton').length; i++) {
+            document.querySelectorAll('.backButton')[i].addEventListener('click', () => {
+                showStartMenu();
+                hideControlsPage();
+                hideGamemodeMenu();
+                hideDifficultyMenu();
+            });
+        }
 
         document.getElementById('singleButton').addEventListener('click', () => {
             hideGamemodeMenu();
@@ -338,7 +372,7 @@ canvas {
         }
        
         function handleRandomEvent() {
-            const randomEvent = Math.round(Math.random() * 15);
+            var randomEvent = 0;
             var eventText = "";
             switch (randomEvent) {
                 case 0:
@@ -355,10 +389,6 @@ canvas {
                             setTimeout(switchDirection, 200 + Math.random() * 400);
                         }
                     }
-                    ball.speedX *= 2;
-                    ball.speedY *= 2;
-                    ball.speedX = cap(ball.speedX, ball.maxSpeed);
-                    ball.speedY = cap(ball.speedY, ball.maxSpeed);
                     switchDirection()
                     eventText = 'Perplexity Ball'
                     break;
@@ -402,7 +432,7 @@ canvas {
                         ball.color = 'white';
                         ball.speedX = oldSpeedX;
                         ball.speedY = oldSpeedY;
-                    }, 5000);
+                    }, 1000 + Math.random() * 5000);
                     eventText = 'Frozen Ball';
                     break;
                 case 6:
@@ -418,7 +448,7 @@ canvas {
                         ball.x = oldX;
                         ball.y = oldY;
                         ball.color = 'white'
-                    }, 5000)
+                    }, 1000 + Math.random() * 5000)
                     eventText = 'Teleportation Ball';
                     break;
                 case 8:
@@ -689,7 +719,7 @@ canvas {
                 radius: 15,
                 speedX: Math.random() < 0.5 ? 5 : -5,
                 speedY: Math.random() < 0.5 ? 5 : -5,
-                maxSpeed: 15,
+                maxSpeed: 12,
                 speedIncrement: 1,
                 color: 'white'
             };
